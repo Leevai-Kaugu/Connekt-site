@@ -10,7 +10,7 @@ const navLinks = [
   { label: "Solution", href: "#solution" },
   { label: "Pricing", href: "#pricing" },
   { label: "Industries", href: "#industries" },
-  { label: "Developers", href: "#developers" },
+  { label: "Products", href: "#products" },
 ];
 
 export default function Navbar({ activeSection = "" }: { activeSection?: string }) {
@@ -26,9 +26,11 @@ export default function Navbar({ activeSection = "" }: { activeSection?: string 
     const onScroll = () => {
       const current = container ? container.scrollTop : window.scrollY;
       const delta = current - lastScrollY.current;
-      const isMobile = window.innerWidth < 768;
-      if (delta > 8) setHidden(isMobile);       // scrolling down — hide only on mobile
-      else if (delta < -8) setHidden(false);     // scrolling up
+      if (delta > 8) {
+        const isMobile = window.innerWidth < 768;
+        setHidden(isMobile);       // scrolling down — hide only on mobile
+        if (isMobile) setMenuOpen(false); // close menu on scroll down
+      } else if (delta < -8) setHidden(false);     // scrolling up
       lastScrollY.current = current;
     };
 

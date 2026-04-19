@@ -41,6 +41,26 @@ body {
   100% { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes doodleFloat1 {
+  from { transform: translateY(0px); }
+  to { transform: translateY(-14px); }
+}
+
+@keyframes doodleFloat2 {
+  from { transform: translate(0px, 0px); }
+  to { transform: translate(10px, -12px); }
+}
+
+@keyframes doodleFloat3 {
+  from { transform: translateY(0px); }
+  to { transform: translateY(-18px); }
+}
+
+@keyframes doodleFloat4 {
+  from { transform: translateX(0px); }
+  to { transform: translateX(12px); }
+}
+
 @keyframes overlayFadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
