@@ -99,6 +99,7 @@ export default function Home() {
 
       {/* Scroll container */}
       <div
+        data-scroll-container
         className="h-screen overflow-y-scroll"
         style={{ scrollSnapType: "y mandatory", scrollBehavior: "smooth" }}
       >
