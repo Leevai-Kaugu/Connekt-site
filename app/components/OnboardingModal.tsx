@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { X, Eye, EyeOff, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import { useOnboarding, OnboardingPayload } from "../hooks/useOnboarding";
@@ -149,7 +150,7 @@ export default function OnboardingModal({ open, onClose }: Props) {
 
   if (!open) return null;
 
-  return (
+  return createPortal(
     <div
       ref={overlayRef}
       className="fixed inset-0 z-[100] flex items-center justify-center p-4"
@@ -390,6 +391,7 @@ export default function OnboardingModal({ open, onClose }: Props) {
           </form>
         )}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
