@@ -88,6 +88,12 @@ function Card({ title, body, delay = 0, icon: Icon }: { title: string; body: str
 /* ─── Page ─────────────────────────────────────────────────────── */
 export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
+  const [activeApp, setActiveApp] = useState<"customer" | "agent">("customer");
+
+  useEffect(() => {
+    const t = setInterval(() => setActiveApp(a => a === "customer" ? "agent" : "customer"), 3500);
+    return () => clearInterval(t);
+  }, []);
 
   useEffect(() => {
     const sections = ["home", "about", "solution", "pricing", "industries", "products"];
@@ -357,51 +363,105 @@ export default function Home() {
                           <div className="w-1 h-1 rounded-full bg-white/30" />
                         </div>
                       </div>
-                      {/* App header */}
-                      <div className="flex items-center gap-1 px-0.5">
-                        <Smartphone className="w-2.5 h-2.5 text-[#BFDBF7]/70" strokeWidth={2} />
-                        <span className="text-[6px] font-bold text-[#BFDBF7] tracking-wide">Kula</span>
-                        <span className="ml-auto text-[5px] bg-[#1F7A8C]/50 text-[#BFDBF7] px-1 py-0.5 rounded-full">Borrower</span>
+                      {/* App toggle pill */}
+                      <div className="flex gap-0.5 rounded-full bg-white/10 p-0.5">
+                        <div className={`flex-1 text-center rounded-full text-[4.5px] py-0.5 font-semibold transition-all duration-500 ${activeApp === "customer" ? "bg-[#1F7A8C] text-white" : "text-white/30"}`}>Customer</div>
+                        <div className={`flex-1 text-center rounded-full text-[4.5px] py-0.5 font-semibold transition-all duration-500 ${activeApp === "agent" ? "bg-[#F59E0B]/90 text-white" : "text-white/30"}`}>Agent</div>
                       </div>
-                      {/* Loan status card */}
-                      <div className="bg-[#1F7A8C]/20 border border-[#1F7A8C]/30 rounded-lg p-1.5">
-                        <div className="text-[5.5px] text-white/40 mb-0.5">Active Loan</div>
-                        <div className="text-[9px] font-extrabold text-[#BFDBF7]">KES 50,000</div>
-                        <div className="mt-1 h-1 w-full rounded-full bg-white/10">
-                          <div className="h-1 rounded-full bg-[#BFDBF7]/60" style={{ width: "62%" }} />
-                        </div>
-                        <div className="flex justify-between mt-0.5">
-                          <span className="text-[4.5px] text-white/30">62% repaid</span>
-                          <span className="text-[4.5px] text-white/30">Due Jun 10</span>
-                        </div>
-                      </div>
-                      {/* Quick actions */}
-                      <div className="grid grid-cols-2 gap-1">
-                        {[
-                          { l: "Apply", icon: "+" },
-                          { l: "Pay Now", icon: "→" },
-                          { l: "History", icon: "↓" },
-                          { l: "Support", icon: "?" },
-                        ].map(({ l, icon }) => (
-                          <div key={l} className="bg-white/8 border border-white/10 rounded-md p-1 flex flex-col items-center gap-0.5">
-                            <span className="text-[7px] text-[#BFDBF7]/60">{icon}</span>
-                            <span className="text-[5px] text-white/40">{l}</span>
+                      {activeApp === "customer" ? (
+                        <>
+                          {/* App header */}
+                          <div className="flex items-center gap-1 px-0.5">
+                            <Smartphone className="w-2.5 h-2.5 text-[#BFDBF7]/70" strokeWidth={2} />
+                            <span className="text-[6px] font-bold text-[#BFDBF7] tracking-wide">Customer App</span>
+                            <span className="ml-auto text-[5px] bg-[#1F7A8C]/50 text-[#BFDBF7] px-1 py-0.5 rounded-full">Borrower</span>
                           </div>
-                        ))}
-                      </div>
-                      {/* Recent */}
-                      <div className="flex-1">
-                        <div className="text-[5px] text-white/25 uppercase tracking-wider mb-1">Recent</div>
-                        {[
-                          { label: "Repayment", amt: "-2,500", color: "text-red-300/70" },
-                          { label: "Disbursed", amt: "+50,000", color: "text-[#BFDBF7]/70" },
-                        ].map(({ label, amt, color }) => (
-                          <div key={label} className="flex justify-between items-center mb-0.5">
-                            <span className="text-[5px] text-white/35">{label}</span>
-                            <span className={`text-[5.5px] font-semibold ${color}`}>{amt}</span>
+                          {/* Loan status card */}
+                          <div className="bg-[#1F7A8C]/20 border border-[#1F7A8C]/30 rounded-lg p-1.5">
+                            <div className="text-[5.5px] text-white/40 mb-0.5">Active Loan</div>
+                            <div className="text-[9px] font-extrabold text-[#BFDBF7]">KES 50,000</div>
+                            <div className="mt-1 h-1 w-full rounded-full bg-white/10">
+                              <div className="h-1 rounded-full bg-[#BFDBF7]/60" style={{ width: "62%" }} />
+                            </div>
+                            <div className="flex justify-between mt-0.5">
+                              <span className="text-[4.5px] text-white/30">62% repaid</span>
+                              <span className="text-[4.5px] text-white/30">Due Jun 10</span>
+                            </div>
                           </div>
-                        ))}
-                      </div>
+                          {/* Quick actions */}
+                          <div className="grid grid-cols-2 gap-1">
+                            {[
+                              { l: "Apply", icon: "+" },
+                              { l: "Pay Now", icon: "→" },
+                              { l: "History", icon: "↓" },
+                              { l: "Support", icon: "?" },
+                            ].map(({ l, icon }) => (
+                              <div key={l} className="bg-white/8 border border-white/10 rounded-md p-1 flex flex-col items-center gap-0.5">
+                                <span className="text-[7px] text-[#BFDBF7]/60">{icon}</span>
+                                <span className="text-[5px] text-white/40">{l}</span>
+                              </div>
+                            ))}
+                          </div>
+                          {/* Recent */}
+                          <div className="flex-1">
+                            <div className="text-[5px] text-white/25 uppercase tracking-wider mb-1">Recent</div>
+                            {[
+                              { label: "Repayment", amt: "-2,500", color: "text-red-300/70" },
+                              { label: "Disbursed", amt: "+50,000", color: "text-[#BFDBF7]/70" },
+                            ].map(({ label, amt, color }) => (
+                              <div key={label} className="flex justify-between items-center mb-0.5">
+                                <span className="text-[5px] text-white/35">{label}</span>
+                                <span className={`text-[5.5px] font-semibold ${color}`}>{amt}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          {/* App header */}
+                          <div className="flex items-center gap-1 px-0.5">
+                            <Briefcase className="w-2.5 h-2.5 text-[#F59E0B]/70" strokeWidth={2} />
+                            <span className="text-[6px] font-bold text-[#BFDBF7] tracking-wide">Agent App</span>
+                            <span className="ml-auto text-[5px] bg-[#F59E0B]/30 text-[#F59E0B] px-1 py-0.5 rounded-full">Agent</span>
+                          </div>
+                          {/* Monthly target card */}
+                          <div className="bg-[#F59E0B]/10 border border-[#F59E0B]/30 rounded-lg p-1.5">
+                            <div className="text-[5.5px] text-white/40 mb-0.5">Monthly Target</div>
+                            <div className="text-[9px] font-extrabold text-[#F59E0B]">85% Achieved</div>
+                            <div className="mt-1 h-1 w-full rounded-full bg-white/10">
+                              <div className="h-1 rounded-full bg-[#F59E0B]/70" style={{ width: "85%" }} />
+                            </div>
+                            <div className="flex justify-between mt-0.5">
+                              <span className="text-[4.5px] text-white/30">KES 340K / 400K</span>
+                              <span className="text-[4.5px] text-[#F59E0B]/60">Target</span>
+                            </div>
+                          </div>
+                          {/* Stats row */}
+                          <div className="grid grid-cols-3 gap-0.5">
+                            {[{ l: "Loans", v: "12" }, { l: "Clients", v: "28" }, { l: "Rate", v: "94%" }].map(({ l, v }) => (
+                              <div key={l} className="bg-white/8 border border-white/10 rounded-md p-1 flex flex-col items-center gap-0.5">
+                                <span className="text-[7px] font-bold text-[#BFDBF7]/80">{v}</span>
+                                <span className="text-[4.5px] text-white/35">{l}</span>
+                              </div>
+                            ))}
+                          </div>
+                          {/* Targets */}
+                          <div className="flex-1 flex flex-col gap-1">
+                            <div className="text-[5px] text-white/25 uppercase tracking-wider">Targets</div>
+                            {[{ l: "New Loans", v: 70 }, { l: "Collections", v: 85 }, { l: "Referrals", v: 50 }].map(({ l, v }) => (
+                              <div key={l}>
+                                <div className="flex justify-between mb-0.5">
+                                  <span className="text-[5px] text-white/40">{l}</span>
+                                  <span className="text-[5px] text-[#F59E0B]/80 font-semibold">{v}%</span>
+                                </div>
+                                <div className="h-1 w-full rounded-full bg-white/10">
+                                  <div className="h-1 rounded-full bg-[#F59E0B]/60" style={{ width: `${v}%` }} />
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </>
+                      )}
                     </div>
                   </div>
                   {/* Home bar */}
@@ -480,34 +540,74 @@ export default function Home() {
                             <span className="text-[5px] text-white/40 font-medium">9:41</span>
                             <div className="flex gap-0.5"><div className="w-2 h-1 rounded-sm bg-white/30" /><div className="w-1 h-1 rounded-full bg-white/30" /></div>
                           </div>
-                          <div className="flex items-center gap-1 px-0.5">
-                            <Smartphone className="w-2.5 h-2.5 text-[#BFDBF7]/70" strokeWidth={2} />
-                            <span className="text-[6px] font-bold text-[#BFDBF7] tracking-wide">Customer App</span>
-                            <span className="ml-auto text-[5px] bg-[#1F7A8C]/50 text-[#BFDBF7] px-1 py-0.5 rounded-full">Borrower</span>
+                          {/* App toggle pill */}
+                          <div className="flex gap-0.5 rounded-full bg-white/10 p-0.5">
+                            <div className={`flex-1 text-center rounded-full text-[4.5px] py-0.5 font-semibold transition-all duration-500 ${activeApp === "customer" ? "bg-[#1F7A8C] text-white" : "text-white/30"}`}>Customer</div>
+                            <div className={`flex-1 text-center rounded-full text-[4.5px] py-0.5 font-semibold transition-all duration-500 ${activeApp === "agent" ? "bg-[#F59E0B]/90 text-white" : "text-white/30"}`}>Agent</div>
                           </div>
-                          <div className="bg-[#1F7A8C]/20 border border-[#1F7A8C]/30 rounded-lg p-1.5">
-                            <div className="text-[5.5px] text-white/40 mb-0.5">Active Loan</div>
-                            <div className="text-[9px] font-extrabold text-[#BFDBF7]">KES 50,000</div>
-                            <div className="mt-1 h-1 w-full rounded-full bg-white/10"><div className="h-1 rounded-full bg-[#BFDBF7]/60" style={{width:"62%"}} /></div>
-                            <div className="flex justify-between mt-0.5"><span className="text-[4.5px] text-white/30">62% repaid</span><span className="text-[4.5px] text-white/30">Due Jun 10</span></div>
-                          </div>
-                          <div className="grid grid-cols-2 gap-1">
-                            {[{l:"Apply",icon:"+"},{l:"Pay Now",icon:"→"},{l:"History",icon:"↓"},{l:"Support",icon:"?"}].map(({l,icon})=>(
-                              <div key={l} className="bg-white/8 border border-white/10 rounded-md p-1 flex flex-col items-center gap-0.5">
-                                <span className="text-[7px] text-[#BFDBF7]/60">{icon}</span>
-                                <span className="text-[5px] text-white/40">{l}</span>
+                          {activeApp === "customer" ? (
+                            <>
+                              <div className="flex items-center gap-1 px-0.5">
+                                <Smartphone className="w-2.5 h-2.5 text-[#BFDBF7]/70" strokeWidth={2} />
+                                <span className="text-[6px] font-bold text-[#BFDBF7] tracking-wide">Customer App</span>
+                                <span className="ml-auto text-[5px] bg-[#1F7A8C]/50 text-[#BFDBF7] px-1 py-0.5 rounded-full">Borrower</span>
                               </div>
-                            ))}
-                          </div>
-                          <div className="flex-1">
-                            <div className="text-[5px] text-white/25 uppercase tracking-wider mb-1">Recent</div>
-                            {[{label:"Repayment",amt:"-2,500",color:"text-red-300/70"},{label:"Disbursed",amt:"+50,000",color:"text-[#BFDBF7]/70"}].map(({label,amt,color})=>(
-                              <div key={label} className="flex justify-between items-center mb-0.5">
-                                <span className="text-[5px] text-white/35">{label}</span>
-                                <span className={`text-[5.5px] font-semibold ${color}`}>{amt}</span>
+                              <div className="bg-[#1F7A8C]/20 border border-[#1F7A8C]/30 rounded-lg p-1.5">
+                                <div className="text-[5.5px] text-white/40 mb-0.5">Active Loan</div>
+                                <div className="text-[9px] font-extrabold text-[#BFDBF7]">KES 50,000</div>
+                                <div className="mt-1 h-1 w-full rounded-full bg-white/10"><div className="h-1 rounded-full bg-[#BFDBF7]/60" style={{width:"62%"}} /></div>
+                                <div className="flex justify-between mt-0.5"><span className="text-[4.5px] text-white/30">62% repaid</span><span className="text-[4.5px] text-white/30">Due Jun 10</span></div>
                               </div>
-                            ))}
-                          </div>
+                              <div className="grid grid-cols-2 gap-1">
+                                {[{l:"Apply",icon:"+"},{l:"Pay Now",icon:"→"},{l:"History",icon:"↓"},{l:"Support",icon:"?"}].map(({l,icon})=>(
+                                  <div key={l} className="bg-white/8 border border-white/10 rounded-md p-1 flex flex-col items-center gap-0.5">
+                                    <span className="text-[7px] text-[#BFDBF7]/60">{icon}</span>
+                                    <span className="text-[5px] text-white/40">{l}</span>
+                                  </div>
+                                ))}
+                              </div>
+                              <div className="flex-1">
+                                <div className="text-[5px] text-white/25 uppercase tracking-wider mb-1">Recent</div>
+                                {[{label:"Repayment",amt:"-2,500",color:"text-red-300/70"},{label:"Disbursed",amt:"+50,000",color:"text-[#BFDBF7]/70"}].map(({label,amt,color})=>(
+                                  <div key={label} className="flex justify-between items-center mb-0.5">
+                                    <span className="text-[5px] text-white/35">{label}</span>
+                                    <span className={`text-[5.5px] font-semibold ${color}`}>{amt}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </>
+                          ) : (
+                            <>
+                              <div className="flex items-center gap-1 px-0.5">
+                                <Briefcase className="w-2.5 h-2.5 text-[#F59E0B]/70" strokeWidth={2} />
+                                <span className="text-[6px] font-bold text-[#BFDBF7] tracking-wide">Agent App</span>
+                                <span className="ml-auto text-[5px] bg-[#F59E0B]/30 text-[#F59E0B] px-1 py-0.5 rounded-full">Agent</span>
+                              </div>
+                              <div className="bg-[#F59E0B]/10 border border-[#F59E0B]/30 rounded-lg p-1.5">
+                                <div className="text-[5.5px] text-white/40 mb-0.5">Monthly Target</div>
+                                <div className="text-[9px] font-extrabold text-[#F59E0B]">85% Achieved</div>
+                                <div className="mt-1 h-1 w-full rounded-full bg-white/10"><div className="h-1 rounded-full bg-[#F59E0B]/70" style={{width:"85%"}} /></div>
+                                <div className="flex justify-between mt-0.5"><span className="text-[4.5px] text-white/30">KES 340K / 400K</span><span className="text-[4.5px] text-[#F59E0B]/60">Target</span></div>
+                              </div>
+                              <div className="grid grid-cols-3 gap-0.5">
+                                {[{l:"Loans",v:"12"},{l:"Clients",v:"28"},{l:"Rate",v:"94%"}].map(({l,v})=>(
+                                  <div key={l} className="bg-white/8 border border-white/10 rounded-md p-1 flex flex-col items-center gap-0.5">
+                                    <span className="text-[7px] font-bold text-[#BFDBF7]/80">{v}</span>
+                                    <span className="text-[4.5px] text-white/35">{l}</span>
+                                  </div>
+                                ))}
+                              </div>
+                              <div className="flex-1 flex flex-col gap-1">
+                                <div className="text-[5px] text-white/25 uppercase tracking-wider">Targets</div>
+                                {[{l:"New Loans",v:70},{l:"Collections",v:85},{l:"Referrals",v:50}].map(({l,v})=>(
+                                  <div key={l}>
+                                    <div className="flex justify-between mb-0.5"><span className="text-[5px] text-white/40">{l}</span><span className="text-[5px] text-[#F59E0B]/80 font-semibold">{v}%</span></div>
+                                    <div className="h-1 w-full rounded-full bg-white/10"><div className="h-1 rounded-full bg-[#F59E0B]/60" style={{width:`${v}%`}} /></div>
+                                  </div>
+                                ))}
+                              </div>
+                            </>
+                          )}
                         </div>
                       </div>
                       <div className="flex justify-center mt-1.5"><div className="w-8 h-0.5 rounded-full bg-white/20" /></div>
@@ -695,11 +795,6 @@ export default function Home() {
                       <h3 className="text-base font-bold">{name}</h3>
                       {badge && <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-white text-[#0A2A33] flex-shrink-0">{badge}</span>}
                     </div>
-                    <div className="mt-2 flex items-end gap-1">
-                      <span className="text-3xl font-extrabold">{price}</span>
-                      <span className="text-sm mb-1 opacity-70">{period}</span>
-                    </div>
-                      {yearly && <p className="text-xs mt-0.5 text-white/50">or {yearly}</p>}
                     <p className="mt-2 text-xs leading-relaxed text-white/70">{description}</p>
                     <ul className="mt-3 space-y-1.5 flex-1">
                       {features.map((f) => (
@@ -738,11 +833,6 @@ export default function Home() {
                         <h3 className="text-base font-bold">{name}</h3>
                         {badge && <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full flex-shrink-0 ${highlighted ? "bg-white text-[#0A2A33]" : "bg-[#0A2A33] text-white"}`}>{badge}</span>}
                       </div>
-                      <div className="mt-2 flex items-end gap-1">
-                        <span className="text-3xl font-extrabold">{price}</span>
-                        <span className="text-sm mb-1 opacity-70">{period}</span>
-                      </div>
-                      {yearly && <p className="text-xs mt-0.5 text-white/50">or {yearly}</p>}
                       <p className="mt-2 text-xs leading-relaxed text-white/70">{description}</p>
                       <ul className="mt-3 space-y-1.5 flex-1">
                         {features.map((f) => (

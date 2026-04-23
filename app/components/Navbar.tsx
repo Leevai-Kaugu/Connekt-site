@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import OnboardingModal from "./OnboardingModal";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -16,6 +17,7 @@ const navLinks = [
 export default function Navbar({ activeSection = "" }: { activeSection?: string }) {
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const lastScrollY = useRef(0);
 
   useEffect(() => {
@@ -47,18 +49,20 @@ export default function Navbar({ activeSection = "" }: { activeSection?: string 
         transition: "transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)",
       }}
     >
-      <div className="flex items-center">
-        <Link href="#home">
-          <Image
-            src="/Connekt Saas logo.svg"
-            alt="Connekt SaaS"
-            width={140}
-            height={36}
-            priority
-            style={{ width: "auto", height: "28px" }}
-          />
-        </Link>
-      </div>
+      <Link href="#home" className="flex items-center gap-2.5 group">
+        <Image
+          src="/Connekt Icon.svg"
+          alt="Connekt"
+          width={32}
+          height={32}
+          priority
+          className="w-8 h-8 group-hover:scale-105 transition"
+        />
+        <div className="flex flex-col leading-none">
+          <span className="text-sm font-extrabold text-[#0A2A33] tracking-tight">Connekt SaaS</span>
+          <span className="text-[10px] text-[#1F7A8C] font-medium tracking-wide">smart financing platform</span>
+        </div>
+      </Link>
 
       <div className="hidden md:flex gap-8 text-lg">
         {navLinks.map(({ label, href }) => {
@@ -78,7 +82,10 @@ export default function Navbar({ activeSection = "" }: { activeSection?: string 
       </div>
 
       {/* Desktop: Start for Free button */}
-      <button className="hidden md:block bg-white text-[#0A2A33] px-5 py-2 rounded-full text-sm font-medium shadow cursor-pointer hover:scale-105 transition">
+      <button
+        onClick={() => setModalOpen(true)}
+        className="hidden md:block bg-white text-[#0A2A33] px-5 py-2 rounded-full text-sm font-medium shadow cursor-pointer hover:scale-105 transition"
+      >
         Start for Free
       </button>
 
@@ -131,11 +138,15 @@ export default function Navbar({ activeSection = "" }: { activeSection?: string 
         );
       })}
       <div className="px-6 py-4">
-        <button className="w-full bg-[#1F7A8C] text-white px-5 py-2.5 rounded-full text-sm font-medium shadow cursor-pointer hover:opacity-90 transition">
-          Start for Free
-        </button>
+        <button
+            onClick={() => { setMenuOpen(false); setModalOpen(true); }}
+            className="w-full bg-[#1F7A8C] text-white px-5 py-2.5 rounded-full text-sm font-medium shadow cursor-pointer hover:opacity-90 transition"
+          >
+            Start for Free
+          </button>
       </div>
     </div>
+      <OnboardingModal open={modalOpen} onClose={() => setModalOpen(false)} />
     </>
   );
 }
