@@ -39,14 +39,14 @@ export default function HeroSection() {
           <p className="mt-5 max-w-2xl text-base md:text-lg text-[#0A2A33]/80">
             Connekt is an online portal by Fanaka Technologies that ties together every customer, agent, and insight giving SACCOs, MFIs, and digital lenders through our apps from one command centre to manage the entire loan lifecycle and much more!
           </p>
-          <div className="mt-8 flex flex-col sm:flex-row items-center gap-4">
+          <div className="md:mt-8 flex flex-col sm:flex-row items-center md:gap-4 ">
             <button
             onClick={() => setModalOpen(true)}
             className="mt-8 px-8 py-3 rounded-full bg-[#0A2A33] text-white font-medium shadow-lg hover:scale-105 transition cursor-pointer"
           >
             Get Started
           </button>
-          <button className="mt-8 px-8 py-3 rounded-full bg-[#BFDBF7] text-[#0A2A33] font-medium shadow-lg hover:scale-105 transition cursor-pointer">
+          <button className="mt-4 md:mt-8 px-8 py-3 rounded-full bg-[#BFDBF7] text-[#0A2A33] font-medium shadow-lg hover:scale-105 transition cursor-pointer">
             Watch Demo
           </button>
           </div>
