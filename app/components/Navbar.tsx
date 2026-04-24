@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import OnboardingModal from "./OnboardingModal";
 
 const navLinks = [
@@ -14,11 +15,24 @@ const navLinks = [
   { label: "Products", href: "#products" },
 ];
 
+const PATH_TO_SECTION: Record<string, string> = {
+  "/about":      "about",
+  "/solution":   "solution",
+  "/pricing":    "pricing",
+  "/industries": "industries",
+  "/developers": "developers",
+};
+
 export default function Navbar({ activeSection = "" }: { activeSection?: string }) {
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const lastScrollY = useRef(0);
+  const pathname = usePathname();
+
+  // On standalone route pages the caller doesn't pass activeSection,
+  // so derive it from the current URL path.
+  const resolvedActive = activeSection || PATH_TO_SECTION[pathname] || "";
 
   useEffect(() => {
     // The scroll container is the first overflow-y-scroll div on the page
@@ -67,7 +81,7 @@ export default function Navbar({ activeSection = "" }: { activeSection?: string 
       <div className="hidden md:flex gap-8 text-lg">
         {navLinks.map(({ label, href }) => {
           const sectionId = href.replace("#", "");
-          const isActive = activeSection === sectionId;
+          const isActive = resolvedActive === sectionId;
           return (
             <Link
               key={href}
@@ -124,7 +138,7 @@ export default function Navbar({ activeSection = "" }: { activeSection?: string 
     >
       {navLinks.map(({ label, href }) => {
         const sectionId = href.replace("#", "");
-        const isActive = activeSection === sectionId;
+        const isActive = resolvedActive === sectionId;
         return (
           <Link
             key={href}

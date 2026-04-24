@@ -17,17 +17,24 @@ export default function Home() {
     const root = scrollRef.current;
     if (!root) return;
     const sections = ["home", "about", "solution", "pricing", "industries", "products"];
-    const observers = sections.map((id) => {
-      const el = document.getElementById(id);
-      if (!el) return null;
-      const observer = new IntersectionObserver(
-        ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
-        { root, threshold: 0.2 }
-      );
-      observer.observe(el);
-      return observer;
-    });
-    return () => observers.forEach((ob) => ob?.disconnect());
+
+    const getActive = () => {
+      const midpoint = root.scrollTop + root.clientHeight / 2;
+      let best = sections[0];
+      let bestDist = Infinity;
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const center = el.offsetTop + el.offsetHeight / 2;
+        const dist = Math.abs(center - midpoint);
+        if (dist < bestDist) { bestDist = dist; best = id; }
+      }
+      setActiveSection(best);
+    };
+
+    getActive();
+    root.addEventListener("scroll", getActive, { passive: true });
+    return () => root.removeEventListener("scroll", getActive);
   }, []);
 
   return (

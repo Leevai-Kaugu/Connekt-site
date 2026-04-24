@@ -185,23 +185,23 @@ export default function ProductsSection() {
           </div>
 
           {/* ── How it works ── */}
-          <div className="w-full max-w-4xl mt-4">
+          <div className="w-full max-w-4xl mt-10">
             {/* Header */}
-            <div className="text-center mb-8">
-              <p className="text-xs font-semibold text-[#0A2A33]/50 uppercase tracking-widest mb-2">How it works</p>
+            <div className="text-center mb-10">
+              <p className="text-xs font-bold text-[#0A2A33] uppercase tracking-widest mb-3 opacity-70">How it works</p>
               <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-[#0A2A33] leading-snug">
                 Up and running in three steps
               </h2>
-              <p className="text-sm md:text-base text-[#0A2A33]/60 mt-2 max-w-xl mx-auto">
+              <p className="text-sm md:text-base text-[#0A2A33] opacity-75 mt-3 max-w-xl mx-auto leading-relaxed">
                 No lengthy implementation projects. Most lenders go live within a single business day.
               </p>
             </div>
 
             {/* Steps */}
-            <div className="relative grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6">
+            <div className="relative grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-6">
               {/* Dotted connectors */}
-              <div className="hidden sm:block absolute top-7 left-[calc(16.67%+2rem)] right-[calc(50%+2rem)] border-t-2 border-dashed border-[#0A2A33]/25 z-0" />
-              <div className="hidden sm:block absolute top-7 left-[calc(50%+2rem)] right-[calc(16.67%+2rem)] border-t-2 border-dashed border-[#0A2A33]/25 z-0" />
+              <div className="hidden sm:block absolute top-7 left-[calc(16.67%+2rem)] right-[calc(50%+2rem)] border-t-2 border-dashed border-[#0A2A33]/50 z-0" />
+              <div className="hidden sm:block absolute top-7 left-[calc(50%+2rem)] right-[calc(16.67%+2rem)] border-t-2 border-dashed border-[#0A2A33]/50 z-0" />
 
               {[
                 {
@@ -221,20 +221,20 @@ export default function ProductsSection() {
                 },
               ].map(({ step, title, body }) => (
                 <div key={step} className="relative flex flex-col items-center text-center sm:items-center">
-                  <div className="relative z-10 w-14 h-14 rounded-full border-2 border-dashed border-[#0A2A33]/40 flex items-center justify-center mb-4 flex-shrink-0">
-                    <span className="text-lg font-black text-[#0A2A33]/70 leading-none select-none">{step}</span>
+                  <div className="relative z-10 w-14 h-14 rounded-full bg-white/30 border-2 border-[#0A2A33]/60 flex items-center justify-center mb-5 flex-shrink-0 shadow-md">
+                    <span className="text-lg font-black text-[#0A2A33] leading-none select-none">{step}</span>
                   </div>
                   <h3 className="text-base font-bold text-[#0A2A33] mb-2 leading-snug">{title}</h3>
-                  <p className="text-sm text-[#0A2A33]/65 leading-relaxed">{body}</p>
+                  <p className="text-sm text-[#0A2A33] opacity-80 leading-relaxed">{body}</p>
                 </div>
               ))}
             </div>
 
             {/* Footer note */}
-            <div className="mt-6 flex items-center justify-center gap-3 bg-[#0A2A33]/8 border border-[#0A2A33]/15 rounded-2xl px-5 py-4">
-              <CheckCircle className="w-5 h-5 text-[#1F7A8C] flex-shrink-0" strokeWidth={2.5} />
-              <p className="text-sm text-[#0A2A33]/80">
-                <span className="font-bold text-[#0A2A33]">Average onboarding time: under 1 day.</span>{" "}
+            <div className="mt-8 flex items-start sm:items-center justify-center gap-3 bg-white/30 backdrop-blur-sm border border-[#0A2A33]/25 rounded-2xl px-5 py-4 shadow-sm">
+              <CheckCircle className="w-5 h-5 text-[#0A2A33] flex-shrink-0 mt-0.5 sm:mt-0" strokeWidth={2.5} />
+              <p className="text-sm text-[#0A2A33]">
+                <span className="font-bold">Average onboarding time: under 1 day.</span>{" "}
                 Our implementation team handles data migration and configuration so your staff can focus on lending.
               </p>
             </div>
