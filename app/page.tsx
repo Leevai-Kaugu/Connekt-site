@@ -74,37 +74,57 @@ export default function Home() {
           50%  { transform: translateY(-12px) translateX(8px) scale(1.04); }
           100% { transform: translateY(0px) translateX(0px) scale(1); }
         }
-        @keyframes mobileSlideOut {
-          /* Laptop: hold → wind-up → shoot left → wait → enter cleanly after phone is gone */
-          0%   { opacity: 1; transform: translateX(0); }
-          40%  { opacity: 1; transform: translateX(0); }
-          42%  { opacity: 1; transform: translateX(17%); }
-          49%  { opacity: 0; transform: translateX(-105%); }
-          50%  { opacity: 0; transform: translateX(105%); }
-          95%  { opacity: 0; transform: translateX(105%); }
-          99%  { opacity: 1; transform: translateX(-2%); }
-          100% { opacity: 1; transform: translateX(0); }
+        @keyframes mobileShow1 {
+          0%        { opacity: 1; transform: translateX(0); }
+          21%       { opacity: 1; transform: translateX(0); }
+          23%       { opacity: 0; transform: translateX(-110%); }
+          24%, 97%  { opacity: 0; transform: translateX(110%); }
+          98.5%     { opacity: 1; transform: translateX(4%); }
+          100%      { opacity: 1; transform: translateX(0); }
         }
-        @keyframes mobileSlideIn {
-          /* Phone: slide in with bounce → hold → exit fully before laptop returns */
-          0%   { opacity: 0; transform: translateX(105%); }
-          42%  { opacity: 0; transform: translateX(105%); }
-          47%  { opacity: 1; transform: translateX(-4%); }
-          51%  { opacity: 1; transform: translateX(0); }
-          90%  { opacity: 1; transform: translateX(0); }
-          92%  { opacity: 1; transform: translateX(4%); }
-          95%  { opacity: 0; transform: translateX(-105%); }
-          100% { opacity: 0; transform: translateX(-105%); }
+        @keyframes mobileShow2 {
+          0%, 24%   { opacity: 0; transform: translateX(110%); }
+          25.5%     { opacity: 1; transform: translateX(4%); }
+          27%       { opacity: 1; transform: translateX(0); }
+          46%       { opacity: 1; transform: translateX(0); }
+          48%       { opacity: 0; transform: translateX(-110%); }
+          49%, 100% { opacity: 0; transform: translateX(110%); }
         }
-        @keyframes mobileSwapDot1 {
-          0%,40%  { opacity: 1; transform: scale(1.2); }
-          51%,90% { opacity: 0.3; transform: scale(1); }
-          100%    { opacity: 1; transform: scale(1.2); }
+        @keyframes mobileShow3 {
+          0%, 49%   { opacity: 0; transform: translateX(110%); }
+          50.5%     { opacity: 1; transform: translateX(4%); }
+          52%       { opacity: 1; transform: translateX(0); }
+          71%       { opacity: 1; transform: translateX(0); }
+          73%       { opacity: 0; transform: translateX(-110%); }
+          74%, 100% { opacity: 0; transform: translateX(110%); }
         }
-        @keyframes mobileSwapDot2 {
-          0%,40%  { opacity: 0.3; transform: scale(1); }
-          51%,90% { opacity: 1; transform: scale(1.2); }
-          100%    { opacity: 0.3; transform: scale(1); }
+        @keyframes mobileShow4 {
+          0%, 74%   { opacity: 0; transform: translateX(110%); }
+          75.5%     { opacity: 1; transform: translateX(4%); }
+          77%       { opacity: 1; transform: translateX(0); }
+          96%       { opacity: 1; transform: translateX(0); }
+          98%       { opacity: 0; transform: translateX(-110%); }
+          100%      { opacity: 0; transform: translateX(-110%); }
+        }
+        @keyframes mobileDot1 {
+          0%, 21%   { opacity: 1; transform: scale(1.3); }
+          24%, 97%  { opacity: 0.3; transform: scale(1); }
+          100%      { opacity: 1; transform: scale(1.3); }
+        }
+        @keyframes mobileDot2 {
+          0%, 24%   { opacity: 0.3; transform: scale(1); }
+          27%, 46%  { opacity: 1; transform: scale(1.3); }
+          49%, 100% { opacity: 0.3; transform: scale(1); }
+        }
+        @keyframes mobileDot3 {
+          0%, 49%   { opacity: 0.3; transform: scale(1); }
+          52%, 71%  { opacity: 1; transform: scale(1.3); }
+          74%, 100% { opacity: 0.3; transform: scale(1); }
+        }
+        @keyframes mobileDot4 {
+          0%, 74%   { opacity: 0.3; transform: scale(1); }
+          77%, 96%  { opacity: 1; transform: scale(1.3); }
+          100%      { opacity: 0.3; transform: scale(1); }
         }
         @keyframes showCustomer {
           0%, 40%   { opacity: 1; }

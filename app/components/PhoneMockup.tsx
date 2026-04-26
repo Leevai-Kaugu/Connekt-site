@@ -2,7 +2,7 @@
 
 import { CreditCard } from "lucide-react";
 
-export default function PhoneMockup() {
+export default function PhoneMockup({ mode }: { mode?: "customer" | "agent" }) {
   return (
     <div
       className="relative w-full rounded-[2rem] shadow-2xl pt-3 pb-2 px-2"
@@ -28,7 +28,7 @@ export default function PhoneMockup() {
         style={{ background: "rgba(30, 74, 101, 0.88)" }}>
 
         {/* ── CUSTOMER APP ── */}
-        <div className="absolute inset-0 flex flex-col text-left" style={{ animation: "showCustomer 8s ease-in-out infinite", animationFillMode: "both" }}>
+        <div className="absolute inset-0 flex flex-col text-left" style={mode === "agent" ? { opacity: 0 } : mode === "customer" ? { opacity: 1 } : { animation: "showCustomer 8s ease-in-out infinite", animationFillMode: "both" }}>
           {/* Status bar */}
           <div className="flex justify-between items-center px-3 pt-2 pb-1">
             <span className="text-[9px] font-semibold text-white/80">9:41</span>
@@ -127,7 +127,7 @@ export default function PhoneMockup() {
         </div>
 
         {/* ── AGENT APP ── */}
-        <div className="absolute inset-0 flex flex-col text-left" style={{ animation: "showAgent 8s ease-in-out infinite", animationFillMode: "both" }}>
+        <div className="absolute inset-0 flex flex-col text-left" style={mode === "customer" ? { opacity: 0 } : mode === "agent" ? { opacity: 1 } : { animation: "showAgent 8s ease-in-out infinite", animationFillMode: "both" }}>
           {/* Status bar */}
           <div className="flex justify-between items-center px-3 pt-2 pb-1">
             <span className="text-[9px] font-semibold text-white/80">9:41</span>

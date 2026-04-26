@@ -17,8 +17,8 @@ export default function HeroSection() {
       {/* Decorative circles */}
       <div className="absolute z-0 -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-[#2C6E7F]/30 blur-3xl pointer-events-none" style={{ animation: "floatSlow 8s ease-in-out infinite" }} />
       <div className="absolute z-0 top-[-100px] right-[-100px] w-[600px] h-[600px] rounded-full bg-white/20 blur-3xl pointer-events-none" style={{ animation: "floatSlow 10s ease-in-out infinite" }} />
-      <div className="absolute z-[15] top-[-500px] right-[-500px] w-[1200px] h-[1200px] rounded-full pointer-events-none" style={{ border: "1.5px solid rgba(255,255,255,0.5)", boxShadow: "0 0 18px 5px rgba(255,255,255,0.3), inset 0 0 18px 5px rgba(255,255,255,0.1)", animation: "floatGentle 9s ease-in-out infinite" }} />
-      <div className="absolute z-[15] bottom-[-500px] left-[-500px] w-[1000px] h-[1000px] rounded-full pointer-events-none" style={{ border: "1.5px solid rgba(255,255,255,0.5)", boxShadow: "0 0 18px 5px rgba(255,255,255,0.3), inset 0 0 18px 5px rgba(255,255,255,0.1)", animation: "floatGentle 11s ease-in-out 3s infinite" }} />
+      <div className="hidden sm:block absolute z-[15] top-[-500px] right-[-500px] w-[1200px] h-[1200px] rounded-full pointer-events-none" style={{ border: "1.5px solid rgba(255,255,255,0.5)", boxShadow: "0 0 18px 5px rgba(255,255,255,0.3), inset 0 0 18px 5px rgba(255,255,255,0.1)", animation: "floatGentle 9s ease-in-out infinite" }} />
+      <div className="hidden sm:block absolute z-[15] bottom-[-500px] left-[-500px] w-[1000px] h-[1000px] rounded-full pointer-events-none" style={{ border: "1.5px solid rgba(255,255,255,0.5)", boxShadow: "0 0 18px 5px rgba(255,255,255,0.3), inset 0 0 18px 5px rgba(255,255,255,0.1)", animation: "floatGentle 11s ease-in-out 3s infinite" }} />
 
       <div className="relative z-10 flex flex-col items-center text-center px-6 lg:px-12 xl:px-20 w-full">
 
@@ -64,94 +64,58 @@ export default function HeroSection() {
         </div>
 
         {/* ── Mobile device showcase (small screens only) ── */}
-        <div className="sm:hidden w-full px-2 pb-10 flex flex-col items-center gap-3">
-          <div className="relative w-full overflow-hidden" style={{height:"480px"}}>
+        <div className="sm:hidden w-screen -mx-6 pb-10 flex flex-col items-center gap-3">
+          <div className="relative w-full overflow-hidden" style={{height:"460px"}}>
 
-            {/* Laptop — visible first, slides left */}
-            <div className="absolute inset-0 flex items-center justify-center" style={{animation:"mobileSlideOut 6s ease-in-out infinite"}}>
-              <div className="w-full max-w-xs">
-                <div className="relative w-full bg-[#0A2A33] rounded-t-2xl pt-4 px-3 pb-0 shadow-2xl ring-1 ring-white/20">
-                  <div className="absolute top-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-white/25" />
-                  <div className="w-full rounded-t-xl overflow-hidden bg-[#071419] aspect-[16/9]">
-                    <div className="w-full h-full flex flex-col p-2 gap-1.5">
-                      <div className="flex items-center gap-1.5 pb-1 border-b border-white/5">
-                        <div className="flex gap-1">
-                          <div className="w-1.5 h-1.5 rounded-full bg-red-400/50" />
-                          <div className="w-1.5 h-1.5 rounded-full bg-yellow-400/50" />
-                          <div className="w-1.5 h-1.5 rounded-full bg-green-400/50" />
-                        </div>
-                        <div className="h-1.5 rounded bg-white/10 w-16" />
-                        <div className="flex-1" />
-                        <span className="text-[6px] text-[#BFDBF7]/40">Connekt Portal</span>
-                      </div>
-                      <div className="flex gap-1.5 flex-1 min-h-0">
-                        <div className="flex flex-col gap-1.5 flex-1 min-w-0">
-                          <div className="bg-white/5 rounded-lg p-1.5 flex flex-col" style={{flex:"0 0 45%"}}>
-                            <div className="text-[6px] text-[#BFDBF7]/50 mb-1 uppercase tracking-wider">Disbursements</div>
-                            <div className="flex items-end gap-0.5 flex-1">
-                              {[45,62,55,70,58,80,74,88,76,100,90,95].map((v,i)=>(
-                                <div key={i} className="flex-1 rounded-t-sm bg-[#1F7A8C]/70" style={{height:`${v}%`}} />
-                              ))}
-                            </div>
-                          </div>
-                          <div className="bg-white/5 rounded-lg p-1.5 flex-1">
-                            <div className="text-[6px] text-[#BFDBF7]/50 mb-1 uppercase tracking-wider">Loan Tracking</div>
-                            {[{c:"J. Mwangi",a:"50K",d:"bg-yellow-300"},{c:"A. Ochieng",a:"120K",d:"bg-[#BFDBF7]"},{c:"F. Njeri",a:"30K",d:"bg-[#1F7A8C]"}].map(r=>(
-                              <div key={r.c} className="flex items-center gap-1 mb-0.5">
-                                <div className={`w-1 h-1 rounded-full flex-shrink-0 ${r.d}`} />
-                                <span className="text-[5.5px] text-white/60 flex-1 truncate">{r.c}</span>
-                                <span className="text-[5.5px] text-[#BFDBF7]/70 font-semibold">{r.a}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                        <div className="flex flex-col gap-1.5" style={{flex:"0 0 38%"}}>
-                          <div className="bg-[#1F7A8C]/20 border border-[#1F7A8C]/30 rounded-lg p-1.5">
-                            <div className="flex items-center gap-1 mb-1">
-                              <Brain className="w-2 h-2 text-[#BFDBF7]/80" strokeWidth={2} />
-                              <span className="text-[5.5px] font-bold text-[#BFDBF7] tracking-widest uppercase">FanakaIQ</span>
-                              <span className="ml-auto text-[5px] bg-[#1F7A8C]/50 text-[#BFDBF7] px-1 rounded-full">Live</span>
-                            </div>
-                            {[{l:"Customer",v:92},{l:"Loan",v:85}].map(({l,v})=>(
-                              <div key={l} className="mb-1">
-                                <div className="flex justify-between mb-0.5">
-                                  <span className="text-[5px] text-white/40">{l}</span>
-                                  <span className="text-[5px] font-bold text-[#BFDBF7]">{v}%</span>
-                                </div>
-                                <div className="h-1 w-full rounded-full bg-white/10">
-                                  <div className="h-1 rounded-full bg-[#BFDBF7]/70" style={{width:`${v}%`}} />
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                          <div className="bg-[#1F7A8C]/15 border border-[#1F7A8C]/30 rounded-lg p-1.5">
-                            <div className="text-[5px] text-[#BFDBF7]/50 uppercase tracking-wider mb-0.5">Auto-Disbursed</div>
-                            <div className="text-[9px] font-extrabold text-[#BFDBF7]">14 loans</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="w-full h-2 bg-[#091c23] rounded-b-sm" />
-                <div className="w-full h-3 bg-[#0A2A33] rounded-b-xl flex justify-center items-center">
-                  <div className="w-12 h-0.5 rounded-full bg-white/10" />
-                </div>
+            {/* Slide 1: Customer phone */}
+            <div className="absolute inset-0 flex items-center justify-center" style={{animation:"mobileShow1 20s linear infinite", animationFillMode:"both"}}>
+              <div className="w-48">
+                <PhoneMockup mode="customer" />
               </div>
             </div>
 
-            {/* Phone — slides in from the right */}
-            <div className="absolute inset-0 flex items-center justify-center" style={{animation:"mobileSlideIn 6s ease-in-out infinite"}}>
+            {/* Slide 2: Laptop */}
+            <div className="absolute inset-0" style={{animation:"mobileShow2 20s linear infinite", animationFillMode:"both"}}>
+              <div style={{
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                width: "800px",
+                transform: "translate(-50%, -50%) scale(0.44)",
+                transformOrigin: "center center",
+              }}>
+                <LaptopMockup />
+              </div>
+            </div>
+
+            {/* Slide 3: Agent phone */}
+            <div className="absolute inset-0 flex items-center justify-center" style={{animation:"mobileShow3 20s linear infinite", animationFillMode:"both"}}>
               <div className="w-48">
-                <PhoneMockup />
+                <PhoneMockup mode="agent" />
+              </div>
+            </div>
+
+            {/* Slide 4: Laptop again */}
+            <div className="absolute inset-0" style={{animation:"mobileShow4 20s linear infinite", animationFillMode:"both"}}>
+              <div style={{
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                width: "800px",
+                transform: "translate(-50%, -50%) scale(0.44)",
+                transformOrigin: "center center",
+              }}>
+                <LaptopMockup />
               </div>
             </div>
 
           </div>
 
           <div className="flex items-center gap-3 mt-2">
-            <div className="w-2 h-2 rounded-full bg-[#0A2A33]/40" style={{animation:"mobileSwapDot1 6s ease-in-out infinite"}} />
-            <div className="w-2 h-2 rounded-full bg-[#0A2A33]/20" style={{animation:"mobileSwapDot2 6s ease-in-out infinite"}} />
+            <div className="w-2 h-2 rounded-full bg-[#0A2A33]" style={{animation:"mobileDot1 20s linear infinite"}} />
+            <div className="w-2 h-2 rounded-full bg-[#0A2A33]" style={{animation:"mobileDot2 20s linear infinite"}} />
+            <div className="w-2 h-2 rounded-full bg-[#0A2A33]" style={{animation:"mobileDot3 20s linear infinite"}} />
+            <div className="w-2 h-2 rounded-full bg-[#0A2A33]" style={{animation:"mobileDot4 20s linear infinite"}} />
           </div>
         </div>
 
