@@ -29,21 +29,21 @@ function ProductCard({
   return (
     <div
       ref={ref}
-      className="rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 p-5 md:p-6 flex flex-col min-h-[300px] md:min-h-[360px]"
+      className="rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 p-5 md:p-6 xl:p-8 flex flex-col min-h-[300px] md:min-h-[360px] xl:min-h-[400px]"
       style={{ opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(32px)", transition: `opacity 0.6s cubic-bezier(0.22,1,0.36,1) ${0.05 + index * 0.08}s, transform 0.6s cubic-bezier(0.22,1,0.36,1) ${0.05 + index * 0.08}s` }}
     >
       <div className="mb-3">
         <div className="flex items-center gap-2 mb-2">
-          <Icon className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0 text-[#0A2A33]" strokeWidth={1.8} />
-          <h3 className="text-base md:text-lg font-bold leading-snug">{title}</h3>
+          <Icon className="w-5 h-5 md:w-6 md:h-6 xl:w-7 xl:h-7 flex-shrink-0 text-[#0A2A33]" strokeWidth={1.8} />
+          <h3 className="text-base md:text-lg xl:text-xl font-bold leading-snug">{title}</h3>
         </div>
         <span className="inline-block text-xs font-semibold px-2 py-1 rounded-full bg-[#0A2A33]/10 text-[#0A2A33]">{badge}</span>
       </div>
-      <p className="text-sm text-[#0A2A33]/80 leading-relaxed mb-4">{body}</p>
+      <p className="text-sm xl:text-base text-[#0A2A33]/80 leading-relaxed mb-4">{body}</p>
       <ul className="mt-auto space-y-2">
         {features.map(f => (
           <li key={f} className="flex items-start gap-2 text-sm text-[#0A2A33]/90">
-            <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#0A2A33]" strokeWidth={2} />
+            <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#22c55e]" strokeWidth={2} />
             <span>{f}</span>
           </li>
         ))}
@@ -58,12 +58,12 @@ export default function ProductsSection() {
       <div className="relative z-10 flex flex-col w-full py-10 md:py-16">
 
         {/* ── Top: product cards ── */}
-        <div className="flex flex-col items-center justify-start px-5 md:px-16 w-full">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-center mb-3">The Full Product Suite</h1>
-          <p className="max-w-2xl text-sm md:text-base text-[#0A2A33]/80 text-center mb-8">
+        <div className="flex flex-col items-center justify-start px-5 md:px-16 xl:px-28 w-full">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-center mb-3">The Full Product Suite</h1>
+          <p className="max-w-2xl xl:max-w-3xl text-sm md:text-base xl:text-lg text-[#0A2A33]/80 text-center mb-8">
             Every tool your team and borrowers need — from field to dashboard.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 w-full max-w-6xl">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 xl:gap-8 w-full max-w-6xl xl:max-w-7xl">
             {[
               {
                 title: "Kula",
@@ -100,12 +100,12 @@ export default function ProductsSection() {
         </div>
 
         {/* ── Bottom: ecosystem write-up + diagram ── */}
-        <div className="flex flex-col items-center gap-12 px-5 md:px-16 mt-16 pb-20 w-full">
+        <div className="flex flex-col items-center gap-12 px-5 md:px-16 xl:px-28 mt-16 pb-20 w-full">
 
           {/* Text block */}
-          <div className="w-full max-w-4xl text-center">
+          <div className="w-full max-w-4xl xl:max-w-5xl text-center">
             <p className="text-xs font-semibold text-[#0A2A33]/50 uppercase tracking-widest mb-3">The Connekt Ecosystem</p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0A2A33] leading-snug mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#0A2A33] leading-snug mb-4">
               One command centre for your entire lending operation
             </h2>
             <p className="text-sm md:text-base text-[#0A2A33]/70 leading-relaxed max-w-2xl mx-auto mb-8">
@@ -130,7 +130,7 @@ export default function ProductsSection() {
           </div>
 
           {/* Diagram */}
-          <div className="w-full max-w-3xl">
+          <div className="w-full max-w-3xl xl:max-w-4xl">
             {/* Row 1: Kula + Zanga */}
             <div className="grid grid-cols-2 gap-4 sm:gap-6">
               {[
@@ -155,7 +155,7 @@ export default function ProductsSection() {
 
             {/* Row 2: Connekt (hero node) */}
             <div className="relative bg-[#0A2A33] rounded-2xl p-6 text-center shadow-xl ring-1 ring-[#1F7A8C]/40">
-              <div className="absolute -top-3 -right-3 bg-[#1F7A8C] text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">Live</div>
+              <div className="absolute -top-3 -right-3 bg-[#F97316] text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">Live</div>
               <div className="font-extrabold text-[#BFDBF7] text-2xl sm:text-3xl mb-2">Connekt</div>
               <div className="text-[#BFDBF7]/60 text-sm">Web Portal · Origination · Servicing · Collections · Compliance</div>
             </div>
@@ -232,7 +232,7 @@ export default function ProductsSection() {
 
             {/* Footer note */}
             <div className="mt-8 flex items-start sm:items-center justify-center gap-3 bg-white/30 backdrop-blur-sm border border-[#0A2A33]/25 rounded-2xl px-5 py-4 shadow-sm">
-              <CheckCircle className="w-5 h-5 text-[#0A2A33] flex-shrink-0 mt-0.5 sm:mt-0" strokeWidth={2.5} />
+              <CheckCircle className="w-5 h-5 text-[#22c55e] flex-shrink-0 mt-0.5 sm:mt-0" strokeWidth={2.5} />
               <p className="text-sm text-[#0A2A33]">
                 <span className="font-bold">Average onboarding time: under 1 day.</span>{" "}
                 Our implementation team handles data migration and configuration so your staff can focus on lending.

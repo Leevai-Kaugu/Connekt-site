@@ -106,6 +106,16 @@ export default function Home() {
           51%,90% { opacity: 1; transform: scale(1.2); }
           100%    { opacity: 0.3; transform: scale(1); }
         }
+        @keyframes showCustomer {
+          0%, 40%   { opacity: 1; }
+          45%, 90%  { opacity: 0; }
+          95%, 100% { opacity: 1; }
+        }
+        @keyframes showAgent {
+          0%, 40%   { opacity: 0; }
+          45%, 90%  { opacity: 1; }
+          95%, 100% { opacity: 0; }
+        }
       `}</style>
     </>
   );
