@@ -35,11 +35,10 @@ export default function Card({
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(32px)",
         transition: `opacity 0.6s cubic-bezier(0.22,1,0.36,1) ${delay}s, transform 0.6s cubic-bezier(0.22,1,0.36,1) ${delay}s`,
-        borderLeft: `4px solid ${accentColor}`,
       }}
     >
       <div className="flex items-center gap-2 mb-2 md:mb-3">
-        {Icon && <Icon className="w-5 h-5 md:w-6 md:h-6 xl:w-7 xl:h-7 flex-shrink-0" style={{ color: accentColor }} strokeWidth={1.8} />}
+        {Icon && <Icon className="w-5 h-5 md:w-6 md:h-6 xl:w-7 xl:h-7 flex-shrink-0 text-[#0A2A33]/60" strokeWidth={1.8} />}
         <h3 className="text-sm md:text-lg xl:text-xl font-bold leading-snug">{title}</h3>
       </div>
       <p className="text-xs md:text-sm xl:text-base leading-relaxed text-[#0A2A33]/80">{body}</p>
