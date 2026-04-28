@@ -14,12 +14,11 @@ export default function AboutSection() {
         </p>
 
         {/* ── Metric bars ── */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 lg:gap-6 max-w-5xl lg:max-w-6xl xl:max-w-7xl w-full">
+        <div className="mt-16 grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 lg:gap-6 max-w-5xl lg:max-w-6xl xl:max-w-7xl w-full">
           {[
-            { label: "Active Loans", value: "1,248", sub: "+8% this month", pct: 72, Icon: CreditCard, barColor: "bg-[#1F7A8C]", iconColor: "text-[#1F7A8C]", border: "border-[#1F7A8C]/30" },
-            { label: "Total Disbursed", value: "$4.2M", sub: "across all clients", pct: 85, Icon: TrendingUp, barColor: "bg-[#F97316]", iconColor: "text-[#F97316]", border: "border-[#F97316]/30" },
-            { label: "Collection Rate", value: "96.3%", sub: "on-time repayments", pct: 96, Icon: BarChart3, barColor: "bg-[#22c55e]", iconColor: "text-[#22c55e]", border: "border-[#22c55e]/30" },
-            { label: "PAR 30", value: "2.1%", sub: "portfolio at risk", pct: 14, Icon: AlertTriangle, barColor: "bg-[#f59e0b]", iconColor: "text-[#f59e0b]", border: "border-[#f59e0b]/30" },
+            { label: "Loans processed", value: "6,400+", sub: "+119 this month", pct: 72, Icon: CreditCard, barColor: "bg-[#1F7A8C]", iconColor: "text-[#1F7A8C]", border: "border-[#1F7A8C]/30" },
+            { label: "Repayment", value: "95%+", sub: "on-time repayments", pct: 85, Icon: TrendingUp, barColor: "bg-[#22c55e]", iconColor: "text-[#22c55e]", border: "border-[#F97316]/30" },
+            { label: "MSMEs served", value: "3,200+", sub: "more everyday", pct: 96, Icon: BarChart3, barColor: "bg-[#F97316]", iconColor: "text-[#F97316]", border: "border-[#22c55e]/30" },
           ].map(({ label, value, sub, pct, Icon, barColor, iconColor, border }, i) => (
             <div
               key={label}

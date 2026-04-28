@@ -5,10 +5,9 @@ import { useRef } from "react";
 import { TrendingUp, BarChart3, CreditCard, AlertTriangle } from "lucide-react";
 
 const metrics = [
-  { label: "Active Loans",    value: "1,248",  sub: "+8% this month",       Icon: CreditCard,    pct: 72, pos: "top-[18%] left-[2%]" },
+  { label: "Active Loans",    value: "6,400+",  sub: "+8% this month",       Icon: CreditCard,    pct: 72, pos: "top-[18%] left-[2%]" },
   { label: "Total Disbursed", value: "$4.2M",  sub: "across all clients",   Icon: TrendingUp,    pct: 85, pos: "top-[18%] right-[2%]" },
   { label: "Collection Rate", value: "96.3%",  sub: "on-time repayments",   Icon: BarChart3,     pct: 96, pos: "bottom-[18%] left-[2%]" },
-  { label: "PAR 30",          value: "2.1%",   sub: "portfolio at risk",    Icon: AlertTriangle, pct: 14, pos: "bottom-[18%] right-[2%]" },
 ];
 
 interface Props {

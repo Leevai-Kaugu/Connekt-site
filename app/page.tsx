@@ -6,7 +6,7 @@ import HeroSection from "./components/sections/HeroSection";
 import AboutSection from "./components/sections/AboutSection";
 import SolutionSection from "./components/sections/SolutionSection";
 import PricingSection from "./components/sections/PricingSection";
-import IndustriesSection from "./components/sections/IndustriesSection";
+import FeaturesSection from "./components/sections/FeaturesSection";
 import ProductsSection from "./components/sections/ProductsSection";
 
 export default function Home() {
@@ -16,18 +16,17 @@ export default function Home() {
   useEffect(() => {
     const root = scrollRef.current;
     if (!root) return;
-    const sections = ["home", "about", "solution", "pricing", "industries", "products"];
+    const sections = ["home", "about", "solution", "pricing", "features", "products"];
 
     const getActive = () => {
-      const midpoint = root.scrollTop + root.clientHeight / 2;
       let best = sections[0];
-      let bestDist = Infinity;
+      let bestOverlap = -Infinity;
       for (const id of sections) {
         const el = document.getElementById(id);
         if (!el) continue;
-        const center = el.offsetTop + el.offsetHeight / 2;
-        const dist = Math.abs(center - midpoint);
-        if (dist < bestDist) { bestDist = dist; best = id; }
+        const rect = el.getBoundingClientRect();
+        const overlap = Math.min(root.clientHeight, rect.bottom) - Math.max(0, rect.top);
+        if (overlap > bestOverlap) { bestOverlap = overlap; best = id; }
       }
       setActiveSection(best);
     };
@@ -53,7 +52,7 @@ export default function Home() {
         <AboutSection />
         <SolutionSection />
         <PricingSection />
-        <IndustriesSection />
+        <FeaturesSection />
         <ProductsSection />
       </div>
 

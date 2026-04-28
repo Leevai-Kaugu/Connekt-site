@@ -11,7 +11,7 @@ const navLinks = [
   { label: "About", href: "#about" },
   { label: "Solution", href: "#solution" },
   { label: "Pricing", href: "#pricing" },
-  { label: "Industries", href: "#industries" },
+  { label: "Features", href: "#features" },
   { label: "Products", href: "#products" },
 ];
 
@@ -19,7 +19,7 @@ const PATH_TO_SECTION: Record<string, string> = {
   "/about":      "about",
   "/solution":   "solution",
   "/pricing":    "pricing",
-  "/industries": "industries",
+  "/features": "features",
   "/developers": "developers",
 };
 

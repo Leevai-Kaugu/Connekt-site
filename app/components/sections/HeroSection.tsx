@@ -29,11 +29,12 @@ export default function HeroSection() {
             <span className="text-sm font-semibold tracking-widest uppercase text-[#0A2A33]">Meet Connekt</span>
           </div>
           <h1 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight max-w-4xl xl:max-w-6xl">
-            A Modern Finance Infrastructure.
+            Run a Smarter Lending Business with Connekt
             <br />
           </h1>
           <p className="mt-5 max-w-2xl xl:max-w-3xl text-base md:text-lg xl:text-xl text-[#0A2A33]/80">
-            Connekt is an online portal by Fanaka Technologies that ties together every customer, agent, and insight giving SACCOs, MFIs, and digital lenders through our apps from one command centre to manage the entire loan lifecycle and much more!
+            Loan origination, repayments, field agents, underwriting, analytics, and compliance — built for African lenders and proven through Fanaka’s own portfolio.
+
           </p>
           <div className="md:mt-8 flex flex-col sm:flex-row items-center md:gap-4">
             <button
@@ -43,7 +44,7 @@ export default function HeroSection() {
               Get Started
             </button>
             <button className="mt-4 md:mt-8 px-8 py-3 rounded-full bg-[#BFDBF7] text-[#0A2A33] font-medium shadow-lg hover:scale-105 transition cursor-pointer">
-              Watch Demo
+              Watch Platform Tour
             </button>
           </div>
         </div>

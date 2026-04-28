@@ -5,28 +5,7 @@ import { createPortal } from "react-dom";
 import Image from "next/image";
 import { X, Eye, EyeOff, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import { useOnboarding, OnboardingPayload } from "../hooks/useOnboarding";
-
-/* ── Country list (ISO 3166-1 alpha-3) ─────────────────────────── */
-const COUNTRIES = [
-  { code: "KEN", label: "Kenya" },
-  { code: "UGA", label: "Uganda" },
-  { code: "TZA", label: "Tanzania" },
-  { code: "ZMB", label: "Zambia" },
-//   { code: "ZWE", label: "Zimbabwe" },
-//   { code: "RWA", label: "Rwanda" },
-//   { code: "ETH", label: "Ethiopia" },
-//   { code: "GHA", label: "Ghana" },
-//   { code: "NGA", label: "Nigeria" },
-//   { code: "ZAF", label: "South Africa" },
-//   { code: "EGY", label: "Egypt" },
-//   { code: "MAR", label: "Morocco" },
-//   { code: "SEN", label: "Senegal" },
-//   { code: "CIV", label: "Côte d'Ivoire" },
-//   { code: "CMR", label: "Cameroon" },
-//   { code: "GBR", label: "United Kingdom" },
-//   { code: "USA", label: "United States" },
-//   { code: "OTHER", label: "Other" },
-];
+import { useActiveCountries } from "../hooks/useActiveCountries";
 
 const EMPTY: OnboardingPayload = {
   first_name: "",
@@ -76,6 +55,7 @@ const inputCls =
 /* ── Modal ───────────────────────────────────────────────────────── */
 export default function OnboardingModal({ open, onClose }: Props) {
   const { submit, loading, error: apiError, success, reset } = useOnboarding();
+  const { countries, loading: countriesLoading } = useActiveCountries();
 
   const [form, setForm] = useState<OnboardingPayload>(EMPTY);
   const [fieldErrors, setFieldErrors] = useState<Partial<Record<keyof OnboardingPayload, string>>>({});
@@ -145,7 +125,14 @@ export default function OnboardingModal({ open, onClose }: Props) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
-    await submit(form);
+    const result = await submit(form);
+    if (!result.success) {
+      const msg = result.message.toLowerCase();
+      if (msg.includes("email") && (msg.includes("exist") || msg.includes("taken") || msg.includes("registered"))) {
+        setFieldErrors((prev) => ({ ...prev, email: result.message }));
+        reset(); // clear the generic banner — the field error is enough
+      }
+    }
   };
 
   if (!open) return null;
@@ -278,10 +265,13 @@ export default function OnboardingModal({ open, onClose }: Props) {
                   className={`${inputCls} cursor-pointer`}
                   value={form.country}
                   onChange={(e) => set("country", e.target.value)}
+                  disabled={countriesLoading}
                 >
-                  <option value="" disabled>Select country</option>
-                  {COUNTRIES.map(({ code, label }) => (
-                    <option key={code} value={code}>{label}</option>
+                  <option value="" disabled>
+                    {countriesLoading ? "Loading countries…" : "Select country"}
+                  </option>
+                  {countries.map(({ id, name, symbol }) => (
+                    <option key={id} value={id}>{symbol} {name}</option>
                   ))}
                 </select>
               </Field>
