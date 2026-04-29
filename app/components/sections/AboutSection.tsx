@@ -44,7 +44,7 @@ export default function AboutSection() {
 
         {/* ── Bar chart ── */}
         <div className="mt-12 max-w-5xl lg:max-w-6xl xl:max-w-7xl w-full p-4 md:p-6 xl:p-8">
-          <p className="text-xs font-semibold text-[#0A2A33]/60 uppercase tracking-wide text-left mb-4">Monthly Disbursements (USD 500,000)</p>
+          <p className="text-xs font-semibold text-[#0A2A33]/60 uppercase tracking-wide text-left mb-4"> USD 500,000+ disbursed through our platform</p>
           <div className="flex items-end gap-2 md:gap-3 h-28 md:h-36 w-full">
             {[
               { month: "Oct", val: 55 },
@@ -62,7 +62,7 @@ export default function AboutSection() {
             ].map(({ month, val }, i) => (
               <div key={month} className="flex flex-col items-center flex-1 h-full justify-end gap-1">
                 <div
-                  className="w-full rounded-t-md bg-[#1F7A8C]/70 hover:bg-[#F97316] transition-all duration-300"
+                  className="w-full rounded-t-md bg-[#1F7A8C]/70 hover:bg-[#0A2A33] transition-all duration-300"
                   style={{
                     height: `${val}%`,
                     animation: `slideUpFade 0.5s cubic-bezier(0.22,1,0.36,1) ${0.05 + i * 0.04}s both`,
