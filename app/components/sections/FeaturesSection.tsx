@@ -12,9 +12,9 @@ const features = [
     demoUrl: "#",
     details: [
       "Real-time portfolio overview with live loan and collections data",
-      "Customizable widgets for KPIs, disbursements, and repayments",
-      "Branch and agent performance snapshots at a glance",
-      "Drill-down summaries linked directly to underlying records",
+      "Charts for KPIs, disbursements, and repayments",
+      "Agent performance snapshots at a glance",
+      "Drill-down summaries linked directly to underlying financial records",
     ],
   },
   {
@@ -25,8 +25,7 @@ const features = [
     details: [
       "Interactive charts for loan performance, repayment trends, and portfolio health",
       "Configurable custom reports exported to PDF, Excel, or CSV",
-      "Cohort analysis and default-rate tracking over time",
-      "Scheduled report delivery to key stakeholders",
+      "In-depth financial, collections, operations, portfolio, and risk analysis & tracking charts and tables"
     ],
   },
   {
