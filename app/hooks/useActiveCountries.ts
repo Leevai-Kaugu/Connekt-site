@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 export interface ActiveCountry {
   id: string;
   name: string;
-  symbol: string;
+  flag: string;
 }
 
 interface UseActiveCountriesReturn {
@@ -31,7 +31,10 @@ export function useActiveCountries(): UseActiveCountriesReturn {
           throw new Error(`Failed to load countries (${res.status})`);
         }
         const raw = await res.json();
-        // Normalise: accept a plain array or a wrapped { data: [] } shape
+        // Normalise: accept a plain array or { success, data: [] } wrapper
+        if (raw?.success === false) {
+          throw new Error(raw?.message ?? "Failed to load countries.");
+        }
         const data: ActiveCountry[] = Array.isArray(raw)
           ? raw
           : Array.isArray(raw?.data)

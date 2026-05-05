@@ -55,7 +55,7 @@ const inputCls =
 /* ── Modal ───────────────────────────────────────────────────────── */
 export default function OnboardingModal({ open, onClose }: Props) {
   const { submit, loading, error: apiError, success, reset } = useOnboarding();
-  const { countries, loading: countriesLoading } = useActiveCountries();
+  const { countries, loading: countriesLoading, error: countriesError } = useActiveCountries();
 
   const [form, setForm] = useState<OnboardingPayload>(EMPTY);
   const [fieldErrors, setFieldErrors] = useState<Partial<Record<keyof OnboardingPayload, string>>>({});
@@ -265,13 +265,13 @@ export default function OnboardingModal({ open, onClose }: Props) {
                   className={`${inputCls} cursor-pointer`}
                   value={form.country}
                   onChange={(e) => set("country", e.target.value)}
-                  disabled={countriesLoading}
+                  disabled={countriesLoading || !!countriesError}
                 >
                   <option value="" disabled>
-                    {countriesLoading ? "Loading countries…" : "Select country"}
+                    {countriesLoading ? "Loading countries…" : countriesError ? "Could not load countries" : "Select country"}
                   </option>
-                  {countries.map(({ id, name, symbol }) => (
-                    <option key={id} value={id}>{symbol} {name}</option>
+                  {countries.map(({ id, name, flag }) => (
+                    <option key={id} value={id}>{flag} {name}</option>
                   ))}
                 </select>
               </Field>
