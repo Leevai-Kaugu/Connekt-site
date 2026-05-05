@@ -1,0 +1,73 @@
+name: Deploy Fanaka App to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  DEPLOY_DIR: /home/pipeline/website/connekt
+  BUILD_DIR: .next # Next.js production build folder
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Nextjs application
+        run: npm run build
+
+      - name: Prepare Remote Directory
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            mkdir -p ${{ env.DEPLOY_DIR }}
+            echo "Cleaning deployment directory, preserving 'env.local'..."
+            cd ${{ env.DEPLOY_DIR }} || exit 1
+            find . -maxdepth 1 -mindepth 1 ! -name 'env.local' -exec rm -rf {} +
+            echo "Clean-up complete."
+      - name: Copy Files to EC2
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          # Consolidating all files into one transfer for efficiency
+          source: ".next/,public/,package.json,package-lock.json,next.config.ts"
+          target: "${{ env.DEPLOY_DIR }}"
+
+      - name: Execute post-deployment commands on EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd ${{ env.DEPLOY_DIR }}
+             echo "Installing production dependencies..."
+             
+            npm install --omit=dev
+            
+            echo "Starting/restarting Next.js app with PM2..."
+            cd ..
+            pm2 restart ecosystem.config.js --only connekt || pm2 start ecosystem.config.js --only connekt
+            pm2 save
+            
+            sudo systemctl reload nginx
+            
+            echo " Post Deployment commands completed "
