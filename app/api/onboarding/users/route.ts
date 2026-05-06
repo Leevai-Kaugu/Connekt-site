@@ -1,15 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const UPSTREAM = process.env.API_URL ?? "";
+const UPSTREAM = process.env.API_URL ?? "https://demo.fanakatech.com/v1";
 
 export async function POST(req: NextRequest) {
-  if (!UPSTREAM) {
-    return NextResponse.json(
-      { message: "API_URL is not configured on the server." },
-      { status: 500 }
-    );
-  }
-
   let body: unknown;
   try {
     body = await req.json();
