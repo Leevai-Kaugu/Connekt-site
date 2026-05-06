@@ -46,11 +46,25 @@ export function useOnboarding(): UseOnboardingReturn {
     setError(null);
     setSuccess(false);
 
+    // Normalise: trim all string fields; lowercase email, password, confirm_password
+    const normalised: OnboardingPayload = {
+      ...payload,
+      first_name:       payload.first_name.trim(),
+      last_name:        payload.last_name.trim(),
+      middle_name:      payload.middle_name.trim(),
+      other_name:       payload.other_name.trim(),
+      email:            payload.email.trim().toLowerCase(),
+      mobile:           payload.mobile.trim(),
+      password:         payload.password.trim(),
+      confirm_password: payload.confirm_password.trim(),
+      country:          payload.country.trim(),
+    };
+
     try {
       const res = await fetch(`${PROXY_BASE}/users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(normalised),
       });
 
       const data = await res.json().catch(() => ({}));
