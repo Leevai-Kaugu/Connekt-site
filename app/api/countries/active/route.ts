@@ -1,15 +1,8 @@
 import { NextResponse } from "next/server";
 
-const UPSTREAM = process.env.API_URL ?? "";
+const UPSTREAM = process.env.API_URL ?? "https://demo.fanakatech.com/v1";
 
 export async function GET() {
-  if (!UPSTREAM) {
-    return NextResponse.json(
-      { message: "API_URL is not configured on the server." },
-      { status: 500 }
-    );
-  }
-
   try {
     const upstream = await fetch(`${UPSTREAM}/web/countries/active`, {
       method: "GET",
