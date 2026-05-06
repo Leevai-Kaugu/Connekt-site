@@ -52,6 +52,88 @@ function Field({
 const inputCls =
   "w-full rounded-xl border border-[#0A2A33]/15 bg-white/60 px-4 py-2.5 text-sm text-[#0A2A33] placeholder:text-[#0A2A33]/30 focus:outline-none focus:ring-2 focus:ring-[#1F7A8C]/50 focus:border-[#1F7A8C] transition";
 
+/* ── CountrySelect ───────────────────────────────────────────────── */
+function CountrySelect({
+  countries,
+  value,
+  onChange,
+  disabled,
+}: {
+  countries: { id: string; name: string; symbol: string }[];
+  value: string;
+  onChange: (val: string) => void;
+  disabled?: boolean;
+}) {
+  const [open, setOpen] = useState(false);
+  const [dropdownStyle, setDropdownStyle] = useState<React.CSSProperties>({});
+  const btnRef = useRef<HTMLButtonElement>(null);
+  const selected = countries.find((c) => c.id === value);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (btnRef.current && !btnRef.current.closest("[data-country-select]")?.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  const handleOpen = () => {
+    if (disabled) return;
+    if (!open && btnRef.current) {
+      const rect = btnRef.current.getBoundingClientRect();
+      setDropdownStyle({
+        position: "fixed",
+        top: rect.bottom + 4,
+        left: rect.left,
+        width: rect.width,
+        zIndex: 9999,
+      });
+    }
+    setOpen((o) => !o);
+  };
+
+  const dropdown = open ? (
+    <ul
+      data-country-select-list
+      style={dropdownStyle}
+      className="max-h-48 overflow-y-auto rounded-xl border border-[#0A2A33]/15 bg-white shadow-lg py-1"
+    >
+      {countries.map((c) => (
+        <li
+          key={c.id}
+          onMouseDown={(e) => { e.preventDefault(); onChange(c.id); setOpen(false); }}
+          className={`flex items-center gap-2 px-4 py-2 text-sm cursor-pointer hover:bg-[#1F7A8C]/10 text-[#0A2A33] ${value === c.id ? "bg-[#1F7A8C]/10 font-medium" : ""}`}
+        >
+          <span>{c.symbol}</span>
+          <span>{c.name}</span>
+        </li>
+      ))}
+    </ul>
+  ) : null;
+
+  return (
+    <div data-country-select>
+      <button
+        ref={btnRef}
+        type="button"
+        disabled={disabled}
+        onClick={handleOpen}
+        className={`${inputCls} flex items-center justify-between text-left ${!selected ? "text-[#0A2A33]/30" : "text-[#0A2A33]"}`}
+      >
+        <span className="flex items-center gap-2">
+          {selected ? (
+            <><span>{selected.symbol}</span><span>{selected.name}</span></>
+          ) : disabled ? "Loading countries…" : "Select country"}
+        </span>
+        <svg className="w-4 h-4 ml-2 shrink-0 text-[#0A2A33]/40" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+      </button>
+      {typeof document !== "undefined" && dropdown ? createPortal(dropdown, document.body) : null}
+    </div>
+  );
+}
+
 /* ── Modal ───────────────────────────────────────────────────────── */
 export default function OnboardingModal({ open, onClose }: Props) {
   const { submit, loading, error: apiError, success, reset } = useOnboarding();
@@ -261,19 +343,12 @@ export default function OnboardingModal({ open, onClose }: Props) {
                 />
               </Field>
               <Field label="Country" required error={fieldErrors.country}>
-                <select
-                  className={`${inputCls} cursor-pointer`}
+                <CountrySelect
+                  countries={countries}
                   value={form.country}
-                  onChange={(e) => set("country", e.target.value)}
+                  onChange={(val) => set("country", val)}
                   disabled={countriesLoading || !!countriesError}
-                >
-                  <option value="" disabled>
-                    {countriesLoading ? "Loading countries…" : countriesError ? "Could not load countries" : "Select country"}
-                  </option>
-                  {countries.map(({ id, name, flag }) => (
-                    <option key={id} value={id}>{flag} {name}</option>
-                  ))}
-                </select>
+                />
               </Field>
             </div>
 

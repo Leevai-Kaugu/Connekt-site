@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 export interface ActiveCountry {
   id: string;
   name: string;
-  flag: string;
+  symbol: string;
 }
 
 interface UseActiveCountriesReturn {
@@ -35,11 +35,13 @@ export function useActiveCountries(): UseActiveCountriesReturn {
         if (raw?.success === false) {
           throw new Error(raw?.message ?? "Failed to load countries.");
         }
-        const data: ActiveCountry[] = Array.isArray(raw)
-          ? raw
-          : Array.isArray(raw?.data)
-          ? raw.data
-          : [];
+        const rawItems: { id: string; name: string; symbol?: string; flag?: string }[] =
+          Array.isArray(raw) ? raw : Array.isArray(raw?.data) ? raw.data : [];
+        const data: ActiveCountry[] = rawItems.map((item) => ({
+          id: item.id,
+          name: item.name,
+          symbol: item.symbol ?? item.flag ?? "",
+        }));
         if (!cancelled) setCountries(data);
       } catch (err) {
         if (!cancelled) {
