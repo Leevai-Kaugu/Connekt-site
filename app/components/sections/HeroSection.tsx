@@ -12,6 +12,13 @@ import PhoneMockup from "../PhoneMockup";
 export default function HeroSection() {
   const [modalOpen, setModalOpen] = useState(false);
 
+  const scrollToFeatures = () => {
+    const featuresSection = document.getElementById("features");
+    if (featuresSection) {
+      featuresSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <Section id="home" className="!h-auto !overflow-visible">
       {/* Decorative circles */}
@@ -23,7 +30,7 @@ export default function HeroSection() {
       <div className="relative z-10 flex flex-col items-center text-center px-6 lg:px-12 xl:px-20 w-full">
 
         {/* ── CTA block ── */}
-        <div className="flex flex-col items-center justify-center min-h-[100dvh] -mb-28 sm:-mb-20">
+        <div className="flex flex-col items-center justify-center min-h-[85dvh] -mb-28 sm:-mb-10">
           <div className="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full bg-[#1F7A8C]/20 border border-[#1F7A8C]/40 backdrop-blur-sm">
             <span className="w-2 h-2 rounded-full bg-[#F97316] animate-pulse" />
             <span className="text-sm font-semibold tracking-widest uppercase text-[#0A2A33]">Meet Connekt</span>
@@ -43,7 +50,10 @@ export default function HeroSection() {
             >
               Get Started
             </button>
-            <button className="mt-4 md:mt-8 px-8 py-3 rounded-full bg-[#BFDBF7] text-[#0A2A33] font-medium shadow-lg hover:scale-105 transition cursor-pointer">
+            <button 
+              onClick={scrollToFeatures}
+              className="mt-4 md:mt-8 px-8 py-3 rounded-full bg-[#BFDBF7] text-[#0A2A33] font-medium shadow-lg hover:scale-105 transition cursor-pointer"
+            >
               Watch Platform Tour
             </button>
           </div>
@@ -80,7 +90,7 @@ export default function HeroSection() {
               <div style={{
                 position: "absolute",
                 left: "50%",
-                top: "50%",
+                top: "42%",
                 width: "800px",
                 transform: "translate(-50%, -50%) scale(0.44)",
                 transformOrigin: "center center",
@@ -101,7 +111,7 @@ export default function HeroSection() {
               <div style={{
                 position: "absolute",
                 left: "50%",
-                top: "50%",
+                top: "32%",
                 width: "800px",
                 transform: "translate(-50%, -50%) scale(0.44)",
                 transformOrigin: "center center",

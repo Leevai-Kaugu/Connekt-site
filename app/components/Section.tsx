@@ -29,8 +29,8 @@ export default function Section({
     <section
       id={id}
       ref={ref}
-      className={`relative h-[100dvh] w-full flex-shrink-0 snap-start bg-gradient-to-br from-[#BFDBF7] to-[#1F7A8C] text-[#0A2A33] overflow-hidden ${className}`}
-      style={{ scrollSnapStop: "always", ...style } as React.CSSProperties}
+      className={`relative h-[100dvh] w-full flex-shrink-0 bg-gradient-to-br from-[#BFDBF7] to-[#1F7A8C] text-[#0A2A33] overflow-hidden ${className}`}
+      style={style}
     >
       <div
         style={{

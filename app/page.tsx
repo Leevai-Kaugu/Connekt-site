@@ -8,6 +8,7 @@ import SolutionSection from "./components/sections/SolutionSection";
 import PricingSection from "./components/sections/PricingSection";
 import FeaturesSection from "./components/sections/FeaturesSection";
 import ProductsSection from "./components/sections/ProductsSection";
+import ContactSection from "./components/sections/ContactSection";
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
@@ -16,7 +17,7 @@ export default function Home() {
   useEffect(() => {
     const root = scrollRef.current;
     if (!root) return;
-    const sections = ["home", "about", "solution", "pricing", "features", "products"];
+    const sections = ["home", "about", "solution", "pricing", "features", "products", "contact"];
 
     const getActive = () => {
       let best = sections[0];
@@ -46,7 +47,7 @@ export default function Home() {
         ref={scrollRef}
         data-scroll-container
         className="h-[100dvh] overflow-y-scroll overflow-x-hidden"
-        style={{ scrollSnapType: "y proximity", scrollBehavior: "smooth", WebkitOverflowScrolling: "touch" } as React.CSSProperties}
+        style={{ scrollBehavior: "smooth", WebkitOverflowScrolling: "touch" } as React.CSSProperties}
       >
         <HeroSection />
         <AboutSection />
@@ -54,6 +55,7 @@ export default function Home() {
         <PricingSection />
         <FeaturesSection />
         <ProductsSection />
+        <ContactSection />
       </div>
 
 

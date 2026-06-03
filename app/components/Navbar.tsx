@@ -13,6 +13,7 @@ const navLinks = [
   { label: "Pricing", href: "#pricing" },
   { label: "Features", href: "#features" },
   { label: "Products", href: "#products" },
+  { label: "Contact", href: "#contact" },
 ];
 
 const PATH_TO_SECTION: Record<string, string> = {

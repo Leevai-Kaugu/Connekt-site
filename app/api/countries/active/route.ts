@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const UPSTREAM = process.env.API_URL ?? "https://demo.fanakatech.com/v1";
+const UPSTREAM = process.env.API_URL ?? "https://sandbox.connektsaas.com/v1";
 
 export async function GET() {
   try {
