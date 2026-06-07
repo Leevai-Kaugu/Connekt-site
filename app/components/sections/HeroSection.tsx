@@ -20,30 +20,114 @@ export default function HeroSection() {
   };
 
   return (
-    <Section id="home" className="!h-auto !overflow-visible">
+    <Section id="home" className="!h-auto !min-h-[100dvh] !overflow-visible">
       {/* Decorative circles */}
       <div className="absolute z-0 -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-[#2C6E7F]/30 blur-3xl pointer-events-none" style={{ animation: "floatSlow 8s ease-in-out infinite" }} />
       <div className="absolute z-0 top-[-100px] right-[-100px] w-[600px] h-[600px] rounded-full bg-white/20 blur-3xl pointer-events-none" style={{ animation: "floatSlow 10s ease-in-out infinite" }} />
-      <div className="hidden sm:block absolute z-[15] top-[-500px] right-[-500px] w-[1200px] h-[1200px] rounded-full pointer-events-none" style={{ border: "1.5px solid rgba(255,255,255,0.5)", boxShadow: "0 0 18px 5px rgba(255,255,255,0.3), inset 0 0 18px 5px rgba(255,255,255,0.1)", animation: "floatGentle 9s ease-in-out infinite" }} />
-      <div className="hidden sm:block absolute z-[15] bottom-[-500px] left-[-500px] w-[1000px] h-[1000px] rounded-full pointer-events-none" style={{ border: "1.5px solid rgba(255,255,255,0.5)", boxShadow: "0 0 18px 5px rgba(255,255,255,0.3), inset 0 0 18px 5px rgba(255,255,255,0.1)", animation: "floatGentle 11s ease-in-out 3s infinite" }} />
+      <div className="absolute z-0 top-[-230px] right-[-230px] w-[640px] h-[640px] sm:top-[-250px] sm:right-[-250px] sm:w-[840px] sm:h-[840px] md:top-[-320px] md:right-[-320px] md:w-[1060px] md:h-[1060px] lg:top-[-450px] lg:right-[-450px] lg:w-[1380px] lg:h-[1380px] rounded-full pointer-events-none" style={{ border: "1.5px solid rgba(255,255,255,0.5)", boxShadow: "0 0 18px 5px rgba(255,255,255,0.3), inset 0 0 18px 5px rgba(255,255,255,0.1)", animation: "floatGentle 9s ease-in-out infinite" }} />
+      <div className="absolute z-0 bottom-[-220px] left-[-220px] w-[620px] h-[620px] sm:bottom-[-240px] sm:left-[-240px] sm:w-[760px] sm:h-[760px] md:bottom-[-300px] md:left-[-270px] md:w-[980px] md:h-[980px] lg:bottom-[-500px] lg:left-[-370px] lg:w-[1300px] lg:h-[1300px] rounded-full pointer-events-none" style={{ border: "1.5px solid rgba(255,255,255,0.5)", boxShadow: "0 0 18px 5px rgba(255,255,255,0.3), inset 0 0 18px 5px rgba(255,255,255,0.1)", animation: "floatGentle 11s ease-in-out 3s infinite" }} />
 
-      <div className="relative z-10 flex flex-col items-center text-center px-6 lg:px-12 xl:px-20 w-full">
+      <div className="relative z-10 w-full px-6 lg:px-12 xl:px-20 flex flex-col min-h-[100dvh]">
 
-        {/* ── CTA block ── */}
-        <div className="flex flex-col items-center justify-center min-h-[85dvh] -mb-28 sm:-mb-10">
+        {/* ── Desktop: Side-by-side layout ── */}
+        <div className="hidden lg:flex flex-1 items-center justify-between gap-10 xl:gap-14 pt-20">
+          
+          {/* Left: Hero Text */}
+          <div className="flex-1 flex flex-col text-left max-w-xl lg:max-w-2xl">
+            <div className="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full bg-[#1F7A8C]/20 border border-[#1F7A8C]/40 backdrop-blur-sm w-fit">
+              <span className="w-2 h-2 rounded-full bg-[#F97316] animate-pulse" />
+              <span className="text-sm font-semibold tracking-widest uppercase text-[#0A2A33]">Meet Connekt</span>
+            </div>
+            <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold leading-tight">
+              Run a Smarter Lending Business with Connekt
+            </h1>
+            <p className="mt-5 text-sm md:text-base lg:text-lg text-[#0A2A33]/80">
+              Loan origination, repayments, field agents, underwriting, analytics, and compliance built for African lenders and proven through Fanaka's own portfolio.
+            </p>
+            <div className="mt-6 flex flex-col sm:flex-row items-start gap-4">
+              <button
+                onClick={() => setModalOpen(true)}
+                className="px-8 py-3 rounded-full bg-[#0A2A33] text-white font-medium shadow-lg hover:scale-105 transition cursor-pointer"
+              >
+                Get Started
+              </button>
+              <button 
+                onClick={scrollToFeatures}
+                className="px-8 py-3 rounded-full bg-[#BFDBF7] text-[#0A2A33] font-medium shadow-lg hover:scale-105 transition cursor-pointer"
+              >
+                Watch Platform Tour
+              </button>
+            </div>
+          </div>
+
+          {/* Right: Laptop + Phone */}
+          <div className="flex-1 relative w-full max-w-3xl lg:max-w-4xl">
+            <LaptopMockup />
+
+            {/* Phone — floats over bottom-right */}
+            <div
+              className="absolute bottom-8 right-0 w-36 lg:w-40 xl:w-44 z-30"
+              style={{ animation: "floatGentle 7s ease-in-out infinite" }}
+            >
+              <PhoneMockup />
+            </div>
+          </div>
+
+        </div>
+
+        {/* ── Medium screens: Stacked layout (text first, mockups below) ── */}
+        <div className="hidden sm:flex lg:hidden flex-col items-center text-center pt-28 pb-10 overflow-x-hidden">
+          <div className="flex flex-col items-center max-w-2xl">
+            <div className="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full bg-[#1F7A8C]/20 border border-[#1F7A8C]/40 backdrop-blur-sm w-fit">
+              <span className="w-2 h-2 rounded-full bg-[#F97316] animate-pulse" />
+              <span className="text-sm font-semibold tracking-widest uppercase text-[#0A2A33]">Meet Connekt</span>
+            </div>
+            <h1 className="text-3xl md:text-4xl font-extrabold leading-tight">
+              Run a Smarter Lending Business with Connekt
+            </h1>
+            <p className="mt-4 text-base md:text-lg text-[#0A2A33]/80">
+              Loan origination, repayments, field agents, underwriting, analytics, and compliance built for African lenders and proven through Fanaka's own portfolio.
+            </p>
+            <div className="mt-6 flex flex-col sm:flex-row items-center gap-4">
+              <button
+                onClick={() => setModalOpen(true)}
+                className="px-8 py-3 rounded-full bg-[#0A2A33] text-white font-medium shadow-lg hover:scale-105 transition cursor-pointer"
+              >
+                Get Started
+              </button>
+              <button
+                onClick={scrollToFeatures}
+                className="px-8 py-3 rounded-full bg-[#BFDBF7] text-[#0A2A33] font-medium shadow-lg hover:scale-105 transition cursor-pointer"
+              >
+                Watch Platform Tour
+              </button>
+            </div>
+          </div>
+
+          <div className="relative w-full max-w-3xl mt-10 px-2">
+            <LaptopMockup />
+            <div
+              className="absolute bottom-8 right-1 w-36 md:w-40 z-30"
+              style={{ animation: "floatGentle 7s ease-in-out infinite" }}
+            >
+              <PhoneMockup />
+            </div>
+          </div>
+        </div>
+
+        {/* ── Mobile: Centered layout ── */}
+        <div className="sm:hidden flex flex-col items-center text-center pt-28 pb-8 overflow-x-hidden">
           <div className="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full bg-[#1F7A8C]/20 border border-[#1F7A8C]/40 backdrop-blur-sm">
             <span className="w-2 h-2 rounded-full bg-[#F97316] animate-pulse" />
             <span className="text-sm font-semibold tracking-widest uppercase text-[#0A2A33]">Meet Connekt</span>
           </div>
-          <h1 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight max-w-4xl xl:max-w-6xl">
+          <h1 className="text-3xl font-extrabold leading-tight max-w-xs">
             Run a Smarter Lending Business with Connekt
-            <br />
           </h1>
-          <p className="mt-5 max-w-2xl xl:max-w-3xl text-base md:text-lg xl:text-xl text-[#0A2A33]/80">
-            Loan origination, repayments, field agents, underwriting, analytics, and compliance — built for African lenders and proven through Fanaka’s own portfolio.
-
+          <p className="mt-4 text-sm text-[#0A2A33]/80 max-w-xs">
+            Loan origination, repayments, field agents, underwriting, analytics, and compliance built for African lenders and proven through Fanaka's own portfolio.
           </p>
-          <div className="md:mt-8 flex flex-col sm:flex-row items-center md:gap-4">
+          <div className="flex flex-col items-center gap-4">
             <button
               onClick={() => setModalOpen(true)}
               className="mt-8 px-8 py-3 rounded-full bg-[#0A2A33] text-white font-medium shadow-lg hover:scale-105 transition cursor-pointer"
@@ -52,26 +136,11 @@ export default function HeroSection() {
             </button>
             <button 
               onClick={scrollToFeatures}
-              className="mt-4 md:mt-8 px-8 py-3 rounded-full bg-[#BFDBF7] text-[#0A2A33] font-medium shadow-lg hover:scale-105 transition cursor-pointer"
+              className="mt-4 px-8 py-3 rounded-full bg-[#BFDBF7] text-[#0A2A33] font-medium shadow-lg hover:scale-105 transition cursor-pointer"
             >
               Watch Platform Tour
             </button>
           </div>
-        </div>
-
-        {/* ── Laptop + Phone (desktop) ── */}
-        <div className="hidden sm:block relative w-full max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto pb-8 sm:pb-28 px-2 sm:px-4 xl:px-6">
-
-          <LaptopMockup />
-
-          {/* Phone — floats over bottom-right, above everything */}
-          <div
-            className="absolute bottom-10 sm:bottom-16 right-0 sm:right-2 xl:right-4 w-40 lg:w-44 xl:w-52 z-30"
-            style={{ animation: "floatGentle 7s ease-in-out infinite" }}
-          >
-            <PhoneMockup />
-          </div>
-
         </div>
 
         {/* ── Mobile device showcase (small screens only) ── */}

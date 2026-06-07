@@ -58,7 +58,7 @@ export default function Navbar({ activeSection = "" }: { activeSection?: string 
   return (
     <>
     <nav
-      className="fixed z-50 top-6 left-1/2 w-[90%] max-w-6xl flex items-center justify-between px-6 py-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30"
+      className="fixed z-50 top-6 left-1/2 w-[90%] max-w-6xl flex items-center justify-between px-4 md:px-6 py-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30"
       style={{
         transform: `translateX(-50%) translateY(${hidden ? "calc(-100% - 2rem)" : "0"})`,
         transition: "transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)",
@@ -79,7 +79,7 @@ export default function Navbar({ activeSection = "" }: { activeSection?: string 
         </div>
       </Link>
 
-      <div className="hidden md:flex gap-8 text-lg">
+      <div className="hidden md:flex items-center gap-3 lg:gap-5 xl:gap-8 text-sm lg:text-base xl:text-lg flex-shrink min-w-0">
         {navLinks.map(({ label, href }) => {
           const sectionId = href.replace("#", "");
           const isActive = resolvedActive === sectionId;
@@ -99,7 +99,7 @@ export default function Navbar({ activeSection = "" }: { activeSection?: string 
       {/* Desktop: Start for Free button */}
       <button
         onClick={() => setModalOpen(true)}
-        className="hidden md:block bg-white text-[#0A2A33] px-5 py-2 rounded-full text-sm font-medium shadow cursor-pointer hover:scale-105 transition"
+        className="hidden md:block flex-shrink-0 bg-white text-[#0A2A33] px-3 lg:px-5 py-2 rounded-full text-xs lg:text-sm font-medium shadow cursor-pointer hover:scale-105 transition whitespace-nowrap"
       >
         Start for Free
       </button>
