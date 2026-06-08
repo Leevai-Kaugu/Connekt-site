@@ -26,7 +26,11 @@ export default function ContactSection() {
   };
 
   return (
-    <Section id="contact" className="!h-auto min-h-[60dvh]">
+    <Section
+      id="contact"
+      className="!h-auto min-h-[60dvh]"
+      style={{ background: "linear-gradient(135deg, #0a1f2e 0%, #0d2d3d 50%, #0f3a4a 100%)" }}
+    >
       <div className="relative z-10 flex items-center justify-center px-6 py-12 w-full">
         
         <div 
@@ -41,17 +45,17 @@ export default function ContactSection() {
             <div>
               {/* Arrow icon */}
               <div className="mb-2">
-                <ArrowDownRight size={26} color="#0A2A33" strokeWidth={2} />
+                <ArrowDownRight size={26} color="#FFFFFF" strokeWidth={2} />
               </div>
 
               <h1 
-                className="text-[#0A2A33] text-5xl font-extrabold uppercase leading-[50px] mb-4"
+                className="text-white text-5xl font-extrabold uppercase leading-[50px] mb-4"
                 style={{ letterSpacing: '-0.5px' }}
               >
                 CONTACT<br />US TODAY
               </h1>
 
-              <p className="text-[#0A2A33]/70 text-sm leading-[21px] max-w-[300px] mb-6">
+              <p className="text-white/80 text-sm leading-[21px] max-w-[300px] mb-6">
                 Contact us today to schedule a consultation and discover how we can help your business thrive.
               </p>
             </div>
@@ -79,7 +83,7 @@ export default function ContactSection() {
           <div className="flex-1 min-w-[260px] flex flex-col justify-between gap-8">
             {/* Email form */}
             <form onSubmit={handleSubmit}>
-              <label className="block text-[#0A2A33] text-[15px] font-semibold mb-3.5">
+              <label className="block text-white text-[15px] font-semibold mb-3.5">
                 Get a Free consultation
               </label>
               <div className="flex items-center bg-white rounded-[50px] pl-3.5 pr-1 py-1 gap-1">
@@ -114,11 +118,11 @@ export default function ContactSection() {
               {CONTACT_INFO.map(({ Icon, text }) => (
                 <div key={text} className="flex items-center gap-3.5">
                   <div 
-                    className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#1F7A8C]/20 backdrop-blur-sm border border-[#1F7A8C]/40"
+                    className="w-[38px] h-[38px] rounded-full flex items-center justify-center bg-[#1F7A8C]/30 backdrop-blur-sm border border-[#1F7A8C]/50"
                   >
-                    <Icon size={15} color="#0A2A33" strokeWidth={2} />
+                    <Icon size={15} color="#FFFFFF" strokeWidth={2} />
                   </div>
-                  <span className="text-[#0A2A33] text-[13.5px] font-medium flex-1">
+                  <span className="text-white text-[13.5px] font-medium flex-1">
                     {text}
                   </span>
                 </div>

@@ -144,7 +144,7 @@ export default function FeaturesSection() {
   const Icon = current.icon;
 
   return (
-    <Section id="features" style={{ background: "linear-gradient(135deg, #e8f4fd 0%, #c8e8f0 50%, #a8d8e8 100%)" }}>
+    <Section id="features" style={{ background: "#ffffff" }}>
       <div className="relative z-10 h-full flex flex-col px-4 lg:px-12 xl:px-20 pt-20 md:pt-24 pb-4 md:pb-6">
 
         {/* Header */}
@@ -174,20 +174,20 @@ export default function FeaturesSection() {
                     <button
                       key={title}
                       onClick={() => setActive(i)}
-                      className={`flex items-center gap-2.5 px-3 py-2 rounded-xl text-left flex-shrink-0 transition-all duration-200 ${
+                      className={`group flex items-center gap-2.5 px-3 py-2 rounded-xl text-left flex-shrink-0 transition-all duration-200 cursor-pointer ${
                         isActive
-                          ? "bg-white/60 backdrop-blur-md shadow-md border border-white/60"
-                          : "bg-white/20 hover:bg-white/35 border border-transparent"
+                          ? "bg-white/95 backdrop-blur-md shadow-md border border-[#0A2A33]/20"
+                          : "bg-white/55 hover:bg-white/90 hover:border-[#0A2A33]/25 hover:shadow-md hover:-translate-y-0.5 border border-transparent"
                       }`}
                     >
                       <ItemIcon
                         className="w-3.5 h-3.5 md:w-4 md:h-4 flex-shrink-0"
-                        style={{ color: isActive ? color : "#0A2A33", opacity: isActive ? 1 : 0.55 }}
+                        style={{ color: isActive ? color : "#0A2A33", opacity: isActive ? 1 : 0.8 }}
                         strokeWidth={2}
                       />
                       <span
                         className="text-xs whitespace-nowrap"
-                        style={{ color: "#0A2A33", opacity: isActive ? 1 : 0.65, fontWeight: isActive ? 700 : 500 }}
+                        style={{ color: "#0A2A33", opacity: isActive ? 1 : 0.85, fontWeight: isActive ? 700 : 500 }}
                       >
                         {title}
                       </span>
@@ -202,7 +202,7 @@ export default function FeaturesSection() {
                 })}
               </div>
               {/* Right-edge fade — mobile only */}
-              <div className="pointer-events-none absolute right-0 top-0 h-full w-12 bg-gradient-to-l from-[#b8d8e8]/90 to-transparent md:hidden" />
+              <div className="pointer-events-none absolute right-0 top-0 h-full w-12 bg-gradient-to-l from-white to-transparent md:hidden" />
             </div>
             {/* Swipe hint — mobile only */}
             <p className="md:hidden text-center text-[10px] text-[#0A2A33]/45 tracking-wide">
@@ -247,7 +247,7 @@ export default function FeaturesSection() {
                 {current.details.map((d, i) => (
                   <div
                     key={d}
-                    className="flex items-start gap-2.5 rounded-xl bg-white/30 border border-white/40 px-3 md:px-4 py-2.5 md:py-3"
+                    className="flex items-start gap-2.5 rounded-xl bg-white/55 border border-[#0A2A33]/10 hover:bg-white/85 hover:border-[#0A2A33]/20 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-200 px-3 md:px-4 py-2.5 md:py-3"
                     style={{ animation: `slideUpFade 0.4s cubic-bezier(0.22,1,0.36,1) ${i * 0.07}s both` }}
                   >
                     <span

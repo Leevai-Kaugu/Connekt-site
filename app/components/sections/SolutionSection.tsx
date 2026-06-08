@@ -6,7 +6,7 @@ import Card from "../Card";
 
 export default function SolutionSection() {
   return (
-    <Section id="solution" className="!h-auto min-h-[100dvh]">
+    <Section id="solution" className="!h-auto min-h-[100dvh]" style={{ background: "#ffffff" }}>
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 lg:px-12 xl:px-20 pt-24 pb-12">
         <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight max-w-3xl xl:max-w-4xl">Our Solution</h1>
         <p className="mt-1.5 md:mt-4 max-w-2xl xl:max-w-3xl text-xs md:text-base xl:text-lg text-[#0A2A33]/80">

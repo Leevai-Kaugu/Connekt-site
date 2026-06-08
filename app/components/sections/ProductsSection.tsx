@@ -29,7 +29,7 @@ function ProductCard({
   return (
     <div
       ref={ref}
-      className="rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 p-5 md:p-6 xl:p-8 flex flex-col min-h-[300px] md:min-h-[360px] xl:min-h-[400px]"
+      className="rounded-2xl bg-white/85 backdrop-blur-xl border border-[#0A2A33]/15 p-5 md:p-6 xl:p-8 flex flex-col min-h-[300px] md:min-h-[360px] xl:min-h-[400px] shadow-[0_14px_34px_rgba(10,42,51,0.12)]"
       style={{ opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(32px)", transition: `opacity 0.6s cubic-bezier(0.22,1,0.36,1) ${0.05 + index * 0.08}s, transform 0.6s cubic-bezier(0.22,1,0.36,1) ${0.05 + index * 0.08}s` }}
     >
       <div className="mb-3">
@@ -54,7 +54,11 @@ function ProductCard({
 
 export default function ProductsSection() {
   return (
-    <Section id="products" className="!h-auto !overflow-visible min-h-[100dvh]">
+    <Section
+      id="products"
+      className="!h-auto !overflow-visible min-h-[100dvh]"
+      style={{ background: "#ffffff" }}
+    >
       <div className="relative z-10 flex flex-col w-full py-10 md:py-16">
 
         {/* ── Top: product cards ── */}
@@ -66,14 +70,14 @@ export default function ProductsSection() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 xl:gap-8 w-full max-w-6xl xl:max-w-7xl">
             {[
               {
-                title: "Kula",
+                title: "Customer app",
                 badge: "Learn Ink integrated",
                 Icon: Smartphone,
                 body: "A polished mobile app that puts loan management in every borrower's pocket — with built-in financial literacy powered by Learn Ink.",
                 features: ["Apply for loans & track status in real time", "Financial literacy via Learn Ink", "Repayment schedules & payment history", "Push notifications for approvals"],
               },
               {
-                title: "Zanga",
+                title: "Agent app",
                 badge: "Works offline",
                 Icon: Users,
                 body: "Empower your loan officers with an offline-capable app built for last-mile lending in low-connectivity environments.",
@@ -111,6 +115,9 @@ export default function ProductsSection() {
             <p className="text-sm md:text-base text-[#0A2A33]/70 leading-relaxed max-w-2xl mx-auto mb-8">
               Every app in the Fanaka Technologies suite feeds into Connekt. From the moment a borrower submits an application to the day their loan is fully repaid, every touchpoint is visible and actionable from one place.
             </p>
+            <p className="text-sm md:text-base text-[#0A2A33]/70 leading-relaxed max-w-2xl mx-auto mb-8">
+              Loan origination can start from customer app, agent app, or USSD: capture borrower details, run checks, score risk with Fanaka IQ, and push the application into Connekt for approval and disbursement.
+            </p>
             {/* Feature pills */}
             <div className="flex flex-wrap justify-center gap-2.5">
               {[
@@ -132,10 +139,11 @@ export default function ProductsSection() {
           {/* Diagram */}
           <div className="w-full max-w-3xl xl:max-w-4xl">
             {/* Row 1: Kula + Zanga */}
-            <div className="grid grid-cols-2 gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
               {[
-                { name: "Kula", sub: "Borrower App", desc: "Loan applications & repayments" },
-                { name: "Zanga", sub: "Agent App", desc: "Field visits & client registration" },
+                { name: "Borrower App", sub: "Smart phone", desc: "Loan applications & repayments" },
+                { name: "Agent App", sub: "Smart phone", desc: "Field visits & client registration" },
+                { name: "USSD", sub: "Feature Phone Channel", desc: "Quick loan origination without internet" },
               ].map(({ name, sub, desc }) => (
                 <div key={name} className="bg-white/30 backdrop-blur-sm border border-white/50 rounded-2xl p-5 text-center shadow-md">
                   <div className="font-extrabold text-[#0A2A33] text-lg sm:text-xl">{name}</div>
